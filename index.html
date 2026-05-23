@@ -13,19 +13,29 @@ body{background:#f0f2f5;min-height:100vh;}
 .topbar .close-x{cursor:pointer;font-size:18px;color:#aaa;}
 .topbar .close-x:hover{color:#fff;}
 
+/* ── ACTION BUTTONS ── */
+.action-bar{background:#fff;padding:10px 20px;border-bottom:1px solid #e0e0e0;display:flex;gap:8px;flex-wrap:wrap;}
+.btn-action{padding:7px 14px;border-radius:20px;border:none;cursor:pointer;font-size:12px;font-weight:600;color:#fff;}
+.btn-distributor{background:#3b82f6;}
+.btn-notes{background:#6b7280;}
+.btn-schedule{background:#6b7280;}
+.btn-pan{background:#6b7280;}
+.btn-altcontact{background:#3b82f6;}
+.btn-won{background:#10b981;}
+.btn-lost{background:#ef4444;}
+.btn-reassign{background:#8b5cf6;}
 
 /* ── TABS ── */
-.tabs{background:#fff;border-bottom:1px solid #e0e0e0;display:flex;gap:0;padding:0 20px;}
-.tab{padding:12px 16px;font-size:13px;color:#555;cursor:pointer;border-bottom:2px solid transparent;display:flex;align-items:center;gap:6px;white-space:nowrap;}
+.tabs{background:#fff;border-bottom:1px solid #e0e0e0;display:flex;gap:0;padding:0 12px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
+.tabs::-webkit-scrollbar{display:none;}
+.tab{padding:12px 14px;font-size:13px;color:#555;cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;flex-shrink:0;}
 .tab:hover{color:#3b82f6;}
 .tab.active{color:#3b82f6;border-bottom:2px solid #3b82f6;font-weight:600;}
-.tab i{font-size:14px;}
 
 /* ── MAIN LAYOUT ── */
 .main{display:flex;gap:0;padding:20px;min-height:calc(100vh - 160px);}
-.left-panel{width:220px;flex-shrink:0;}
-.center-panel{flex:1;padding:0 24px;}
-.right-panel{width:260px;flex-shrink:0;}
+.left-panel{width:210px;flex-shrink:0;}
+.center-panel{flex:1;padding:0 24px;min-width:0;}
 
 /* ── PROFILE CARD ── */
 .avatar{width:52px;height:52px;border-radius:50%;background:#e0e7ff;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:8px;}
@@ -35,107 +45,167 @@ body{background:#f0f2f5;min-height:100vh;}
 .rm-name{font-size:13px;color:#3b82f6;font-weight:600;margin-top:2px;}
 .notify-row{margin-top:16px;font-size:12px;color:#555;font-weight:600;}
 .toggle{display:inline-block;width:38px;height:20px;background:#10b981;border-radius:10px;position:relative;cursor:pointer;margin-top:6px;vertical-align:middle;}
-.toggle::after{content:'';position:absolute;width:16px;height:16px;background:#fff;border-radius:50%;top:2px;right:2px;transition:.2s;}
+.toggle::after{content:'';position:absolute;width:16px;height:16px;background:#fff;border-radius:50%;top:2px;right:2px;}
 .gen-label{font-size:12px;color:#888;margin-top:18px;font-weight:600;}
 .gen-value{font-size:13px;color:#1a1a1a;margin-top:2px;}
 
-/* ── LEAD DETAILS SECTION ── */
+/* ── LEAD DETAILS ── */
 .section-title{font-size:15px;font-weight:700;color:#1a1a1a;margin-bottom:14px;}
-.detail-row{display:flex;gap:6px;margin-bottom:8px;font-size:13px;}
+.detail-row{display:flex;gap:6px;margin-bottom:8px;font-size:13px;flex-wrap:wrap;}
 .detail-label{color:#888;min-width:150px;}
 .detail-value{color:#1a1a1a;font-weight:500;}
 .detail-value.link{color:#3b82f6;}
 .btn-call{background:#3b82f6;color:#fff;border:none;border-radius:16px;padding:3px 14px;font-size:12px;cursor:pointer;margin-left:8px;}
 
-/* ── RIGHT SIDE BOXES ── */
-.right-box{background:#fff;border:0.5px solid #e0e0e0;border-radius:8px;padding:14px 16px;margin-bottom:16px;}
-.right-box-title{font-size:14px;font-weight:700;color:#1a1a1a;margin-bottom:8px;}
-.right-box-empty{font-size:13px;color:#888;}
-
-/* ── SUGGESTED FUNDS TAB CONTENT ── */
-#tab-suggested{display:none;}
-.suggest-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;}
-.btn-suggest-new{background:#3b82f6;color:#fff;border:none;border-radius:6px;padding:9px 18px;font-size:13px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:6px;}
+/* ── SUGGESTED FUNDS TAB ── */
+.suggest-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;flex-wrap:wrap;gap:10px;}
+.btn-suggest-new{background:#3b82f6;color:#fff;border:none;border-radius:6px;padding:9px 18px;font-size:13px;font-weight:600;cursor:pointer;}
 .btn-suggest-new:hover{background:#2563eb;}
 
 /* ── HISTORY TABLE ── */
-.history-table{width:100%;border-collapse:collapse;font-size:13px;}
+.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+.history-table{width:100%;border-collapse:collapse;font-size:13px;min-width:520px;}
 .history-table th{background:#f8f9fa;padding:10px 12px;text-align:left;font-weight:600;color:#555;border-bottom:1.5px solid #e0e0e0;}
 .history-table td{padding:10px 12px;border-bottom:0.5px solid #e9ecef;color:#1a1a1a;vertical-align:middle;}
 .history-table tr:hover td{background:#f8f9ff;}
 .scheme-pills{display:flex;gap:4px;flex-wrap:wrap;}
 .pill{background:#e0e7ff;color:#3730a3;font-size:11px;padding:2px 8px;border-radius:10px;}
-.btn-view{background:#fff;border:1px solid #3b82f6;color:#3b82f6;border-radius:5px;padding:4px 12px;font-size:12px;cursor:pointer;font-weight:600;}
+.btn-view{background:#fff;border:1px solid #3b82f6;color:#3b82f6;border-radius:5px;padding:4px 12px;font-size:12px;cursor:pointer;font-weight:600;white-space:nowrap;}
 .btn-view:hover{background:#eff6ff;}
 .no-records{text-align:center;padding:40px;color:#aaa;font-size:14px;}
 
 /* ── MODAL OVERLAY ── */
 .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:1000;overflow-y:auto;}
-.modal-overlay.active{display:flex;align-items:flex-start;justify-content:center;padding:30px 16px;}
+.modal-overlay.active{display:flex;align-items:flex-start;justify-content:center;padding:16px;}
 
 /* ── FUND SELECTOR MODAL ── */
 .fund-modal{background:#fff;border-radius:10px;width:100%;max-width:900px;overflow:hidden;}
 .fund-modal-header{background:#2c3e50;color:#fff;padding:14px 20px;display:flex;justify-content:space-between;align-items:center;}
 .fund-modal-header h3{font-size:15px;font-weight:600;}
-.modal-close{background:none;border:none;color:#aaa;font-size:20px;cursor:pointer;line-height:1;}
+.modal-close{background:none;border:none;color:#aaa;font-size:20px;cursor:pointer;line-height:1;flex-shrink:0;}
 .modal-close:hover{color:#fff;}
 
-/* Cart summary bar */
-.cart-bar{background:#eff6ff;border-bottom:1px solid #bfdbfe;padding:10px 20px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
-.cart-bar-label{font-size:12px;font-weight:700;color:#1d4ed8;}
+/* Cart bar */
+.cart-bar{background:#eff6ff;border-bottom:1px solid #bfdbfe;padding:10px 16px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.cart-bar-label{font-size:12px;font-weight:700;color:#1d4ed8;flex-shrink:0;}
 .cart-pill{background:#dbeafe;color:#1e40af;font-size:11px;padding:3px 10px;border-radius:12px;display:flex;align-items:center;gap:5px;}
 .cart-pill .remove{cursor:pointer;font-size:13px;color:#6b7280;}
 .cart-pill .remove:hover{color:#ef4444;}
 .cart-bar-empty{font-size:12px;color:#93c5fd;}
 
 /* Product tabs */
-.product-tabs{display:flex;gap:0;padding:0;border-bottom:2px solid #e5e7eb;overflow-x:auto;}
-.prod-tab{padding:11px 16px;font-size:12px;font-weight:700;color:#666;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px;white-space:nowrap;}
+.product-tabs{display:flex;gap:0;border-bottom:2px solid #e5e7eb;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
+.product-tabs::-webkit-scrollbar{display:none;}
+.prod-tab{padding:11px 14px;font-size:12px;font-weight:700;color:#666;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px;white-space:nowrap;flex-shrink:0;}
 .prod-tab:hover{color:#1a1a1a;}
 .prod-tab.active{color:#7c2d12;border-bottom:2px solid #7c2d12;}
 
+/* Search bar */
+.search-wrap{padding:10px 16px;border-bottom:0.5px solid #e5e7eb;background:#fafafa;}
+.search-inner{position:relative;}
+.search-icon{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:#9ca3af;font-size:15px;pointer-events:none;}
+.search-input{width:100%;padding:9px 12px 9px 34px;border:1px solid #e0e0e0;border-radius:6px;font-size:13px;color:#1a1a1a;background:#fff;outline:none;}
+.search-input:focus{border-color:#3b82f6;}
+
 /* Scheme list */
-.scheme-list{padding:16px 20px;max-height:420px;overflow-y:auto;}
-.scheme-card{border:0.5px solid #e5e7eb;border-radius:8px;padding:14px 16px;margin-bottom:12px;display:flex;align-items:center;gap:14px;transition:border-color .15s,background .15s;}
+.scheme-list{padding:12px 16px;max-height:380px;overflow-y:auto;-webkit-overflow-scrolling:touch;}
+.scheme-card{border:0.5px solid #e5e7eb;border-radius:8px;padding:12px 14px;margin-bottom:10px;display:flex;align-items:center;gap:12px;transition:border-color .15s,background .15s;flex-wrap:wrap;}
 .scheme-card:hover{border-color:#93c5fd;background:#f8fbff;}
 .scheme-card.selected{border-color:#3b82f6;background:#eff6ff;}
-.scheme-logo{width:64px;height:42px;object-fit:contain;flex-shrink:0;}
-.scheme-logo-placeholder{width:64px;height:42px;background:#f1f5f9;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:10px;color:#888;flex-shrink:0;text-align:center;padding:2px;}
-.scheme-info{flex:1;}
+.scheme-logo-placeholder{width:52px;height:36px;background:#f1f5f9;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:10px;color:#888;flex-shrink:0;text-align:center;}
+.scheme-info{flex:1;min-width:140px;}
 .scheme-name{font-size:13px;font-weight:700;color:#1a1a1a;margin-bottom:4px;}
-.scheme-tag{display:inline-block;background:#fef3c7;color:#92400e;font-size:10px;padding:2px 8px;border-radius:10px;margin-bottom:4px;margin-right:4px;}
+.scheme-tag{display:inline-block;background:#fef3c7;color:#92400e;font-size:10px;padding:2px 7px;border-radius:10px;margin-bottom:3px;margin-right:3px;}
 .scheme-tag.equity{background:#e0f2fe;color:#075985;}
 .scheme-tag.multicap{background:#f0fdf4;color:#166534;}
 .scheme-tag.multiasset{background:#fdf4ff;color:#7e22ce;}
 .scheme-tag.smallcap{background:#fff7ed;color:#c2410c;}
 .scheme-meta{font-size:11px;color:#888;}
-.scheme-returns{display:flex;gap:16px;flex-shrink:0;}
-.return-col{text-align:center;min-width:44px;}
-.return-val{font-size:13px;font-weight:700;color:#059669;}
+.scheme-returns{display:flex;gap:12px;flex-shrink:0;}
+.return-col{text-align:center;min-width:38px;}
+.return-val{font-size:12px;font-weight:700;color:#059669;}
 .return-val.na{color:#9ca3af;}
 .return-label{font-size:10px;color:#888;margin-top:2px;}
-.add-btn{width:32px;height:32px;border-radius:50%;border:1.5px solid #d1d5db;background:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .15s;font-size:16px;color:#6b7280;}
+.add-btn{width:32px;height:32px;border-radius:50%;border:1.5px solid #d1d5db;background:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px;color:#6b7280;transition:all .15s;}
 .add-btn:hover{border-color:#3b82f6;color:#3b82f6;}
 .scheme-card.selected .add-btn{background:#3b82f6;border-color:#3b82f6;color:#fff;}
 
 /* Trigger bar */
-.trigger-bar{padding:14px 20px;border-top:1px solid #e5e7eb;display:flex;justify-content:space-between;align-items:center;background:#fafafa;}
+.trigger-bar{padding:12px 16px;border-top:1px solid #e5e7eb;display:flex;justify-content:space-between;align-items:center;background:#fafafa;flex-wrap:wrap;gap:8px;}
 .selected-count{font-size:13px;color:#555;}
 .selected-count strong{color:#1a1a1a;}
-.btn-trigger{background:#10b981;color:#fff;border:none;border-radius:6px;padding:9px 22px;font-size:13px;font-weight:700;cursor:pointer;}
+.btn-trigger{background:#10b981;color:#fff;border:none;border-radius:6px;padding:9px 18px;font-size:13px;font-weight:700;cursor:pointer;}
 .btn-trigger:hover{background:#059669;}
 .btn-trigger:disabled{background:#d1d5db;cursor:not-allowed;}
 
 /* ── VIEW POPUP ── */
-.view-modal{background:#fff;border-radius:10px;width:100%;max-width:650px;overflow:hidden;}
-.view-modal-header{background:#2c3e50;color:#fff;padding:13px 20px;display:flex;justify-content:space-between;align-items:center;}
+.view-modal{background:#fff;border-radius:10px;width:100%;max-width:600px;overflow:hidden;}
+.view-modal-header{background:#2c3e50;color:#fff;padding:13px 16px;display:flex;justify-content:space-between;align-items:center;}
 .view-modal-header h3{font-size:14px;font-weight:600;}
-.view-modal-body{padding:20px;}
-.view-date-info{font-size:12px;color:#888;margin-bottom:16px;}
-.view-product-group{margin-bottom:18px;}
+.view-modal-body{padding:16px;max-height:80vh;overflow-y:auto;}
+.view-date-info{font-size:12px;color:#888;margin-bottom:14px;}
+.view-product-group{margin-bottom:16px;}
 .view-product-title{font-size:13px;font-weight:700;color:#1d4ed8;border-left:3px solid #3b82f6;padding-left:8px;margin-bottom:8px;}
-.view-scheme-row{display:flex;align-items:center;gap:10px;padding:7px 10px;border-radius:6px;background:#f8f9fa;margin-bottom:5px;font-size:12px;color:#1a1a1a;}
+.view-scheme-row{display:flex;align-items:center;gap:10px;padding:7px 10px;border-radius:6px;background:#f8f9fa;margin-bottom:5px;font-size:12px;color:#1a1a1a;flex-wrap:wrap;}
 .view-scheme-dot{width:7px;height:7px;border-radius:50%;background:#3b82f6;flex-shrink:0;}
+
+/* ══════════════════════════════
+   MOBILE RESPONSIVE
+══════════════════════════════ */
+@media (max-width: 768px) {
+
+  /* Action bar */
+  .action-bar{padding:8px 12px;gap:6px;}
+  .btn-action{padding:5px 10px;font-size:11px;}
+
+  /* Main layout: stack vertically */
+  .main{flex-direction:column;padding:12px;}
+
+  /* Left panel: horizontal strip on mobile */
+  .left-panel{width:100%;display:flex;flex-wrap:wrap;gap:12px;align-items:flex-start;background:#fff;border-radius:8px;padding:12px;margin-bottom:12px;border:0.5px solid #e0e0e0;}
+  .left-panel .avatar{margin-bottom:0;}
+  .left-panel .lead-name{font-size:15px;}
+  .rm-label,.gen-label{margin-top:6px;}
+  .notify-row{margin-top:0;}
+  .toggle{margin-top:4px;}
+
+  /* Center panel */
+  .center-panel{padding:0;}
+
+  /* Detail rows: stack label/value */
+  .detail-label{min-width:unset;width:100%;margin-bottom:2px;}
+  .detail-row{flex-direction:column;gap:2px;}
+
+  /* Scheme cards on mobile */
+  .scheme-card{flex-wrap:wrap;gap:10px;}
+  .scheme-returns{width:100%;justify-content:space-around;border-top:0.5px solid #f0f0f0;padding-top:8px;margin-top:4px;}
+  .add-btn{margin-left:auto;}
+
+  /* Fund modal full screen */
+  .modal-overlay.active{padding:0;align-items:flex-end;}
+  .fund-modal{border-radius:12px 12px 0 0;max-height:95vh;display:flex;flex-direction:column;}
+  .scheme-list{flex:1;max-height:none;}
+
+  /* View modal */
+  .modal-overlay.active .view-modal{border-radius:12px 12px 0 0;}
+  .view-scheme-row{flex-direction:column;align-items:flex-start;gap:4px;}
+
+  /* Trigger button full width on small screens */
+  .trigger-bar{flex-direction:column;align-items:stretch;}
+  .btn-trigger{text-align:center;}
+
+  /* Suggest header */
+  .suggest-header{flex-direction:column;align-items:flex-start;}
+  .btn-suggest-new{width:100%;justify-content:center;}
+}
+
+@media (max-width: 480px) {
+  .topbar{font-size:14px;padding:10px 14px;}
+  .tab{padding:10px 10px;font-size:12px;}
+  .fund-modal-header h3{font-size:13px;}
+  .scheme-name{font-size:12px;}
+  .return-val{font-size:11px;}
+}
 </style>
 </head>
 <body>
@@ -146,6 +216,17 @@ body{background:#f0f2f5;min-height:100vh;}
   <span class="close-x">✕</span>
 </div>
 
+<!-- ACTION BUTTONS -->
+<div class="action-bar">
+  <button class="btn-action btn-distributor">Distributor</button>
+  <button class="btn-action btn-notes">Notes</button>
+  <button class="btn-action btn-schedule">Schedule Meeting</button>
+  <button class="btn-action btn-pan">PAN No</button>
+  <button class="btn-action btn-altcontact">Alternate Contact</button>
+  <button class="btn-action btn-won">Lead Won</button>
+  <button class="btn-action btn-lost">Lead Lost</button>
+  <button class="btn-action btn-reassign">Reassign To</button>
+</div>
 
 <!-- TABS -->
 <div class="tabs">
@@ -163,17 +244,25 @@ body{background:#f0f2f5;min-height:100vh;}
 
   <!-- LEFT PANEL -->
   <div class="left-panel">
-    <div class="avatar">👤</div>
-    <div class="lead-name">Saikumar</div>
-    <span class="badge-new">New Lead</span>
-    <div class="rm-label">Attending RM</div>
-    <div class="rm-name">Aamir Firfire</div>
-    <div class="notify-row">Notify User Activity</div>
-    <div><span class="toggle"></span></div>
-    <div class="gen-label">Lead Generated on</div>
-    <div class="gen-value">23-05-2026 14:44:16</div>
-    <div class="gen-label" style="margin-top:12px;">Last Update on</div>
-    <div class="gen-value">23-05-2026 14:44:16</div>
+    <div>
+      <div class="avatar">👤</div>
+      <div class="lead-name">Saikumar</div>
+      <span class="badge-new">New Lead</span>
+    </div>
+    <div>
+      <div class="rm-label">Attending RM</div>
+      <div class="rm-name">Aamir Firfire</div>
+    </div>
+    <div>
+      <div class="notify-row">Notify User Activity</div>
+      <div><span class="toggle"></span></div>
+    </div>
+    <div>
+      <div class="gen-label">Lead Generated on</div>
+      <div class="gen-value">23-05-2026 14:44:16</div>
+      <div class="gen-label" style="margin-top:8px;">Last Update on</div>
+      <div class="gen-value">23-05-2026 14:44:16</div>
+    </div>
   </div>
 
   <!-- CENTER PANEL -->
@@ -195,7 +284,7 @@ body{background:#f0f2f5;min-height:100vh;}
       <div class="detail-row"><span class="detail-label">Country :</span><span class="detail-value">India</span></div>
     </div>
 
-    <!-- OTHER PLACEHOLDER TABS -->
+    <!-- PLACEHOLDER TABS -->
     <div id="tab-callhistory" style="display:none;"><div class="no-records">No call history found.</div></div>
     <div id="tab-notes" style="display:none;"><div class="no-records">No notes or tasks found.</div></div>
     <div id="tab-meetings" style="display:none;"><div class="no-records">No meetings scheduled.</div></div>
@@ -208,34 +297,33 @@ body{background:#f0f2f5;min-height:100vh;}
         <div class="section-title" style="margin:0;">Suggested Funds</div>
         <button class="btn-suggest-new" onclick="openFundModal()">+ Suggest Funds</button>
       </div>
-
-      <!-- HISTORY LIST -->
       <div id="history-empty" class="no-records">No suggested funds yet. Click "+ Suggest Funds" to get started.</div>
-      <table class="history-table" id="history-table" style="display:none;">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Date & Time</th>
-            <th>Schemes Suggested</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody id="history-tbody"></tbody>
-      </table>
+      <div class="table-wrap">
+        <table class="history-table" id="history-table" style="display:none;">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Date &amp; Time</th>
+              <th>Schemes Suggested</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="history-tbody"></tbody>
+        </table>
+      </div>
     </div>
 
-
+  </div><!-- /center-panel -->
 </div><!-- /main -->
 
-<!-- ════════════════════════════════
+<!-- ════════════════════════
      FUND SELECTOR MODAL
-════════════════════════════════ -->
+════════════════════════ -->
 <div class="modal-overlay" id="fund-overlay">
 <div class="fund-modal">
 
-  <!-- Header -->
   <div class="fund-modal-header">
-    <h3>Suggest Funds &mdash; Select Schemes</h3>
+    <h3>Suggest Funds — Select Schemes</h3>
     <button class="modal-close" onclick="closeFundModal()">✕</button>
   </div>
 
@@ -257,31 +345,29 @@ body{background:#f0f2f5;min-height:100vh;}
     <div class="prod-tab" onclick="switchProd('gift3',this)">GIFT (CAT III)</div>
   </div>
 
-  <!-- Search Bar -->
-  <div style="padding:12px 20px;border-bottom:0.5px solid #e5e7eb;background:#fafafa;">
-    <div style="position:relative;">
-      <span style="position:absolute;left:12px;top:50%;transform:translateY(-50%);color:#9ca3af;font-size:16px;">&#128269;</span>
-      <input type="text" id="scheme-search" placeholder="Search schemes by name..." oninput="renderSchemes()"
-        style="width:100%;padding:9px 12px 9px 38px;border:1px solid #e0e0e0;border-radius:6px;font-size:13px;color:#1a1a1a;background:#fff;outline:none;"
-        onfocus="this.style.borderColor='#3b82f6'" onblur="this.style.borderColor='#e0e0e0'"/>
+  <!-- Search -->
+  <div class="search-wrap">
+    <div class="search-inner">
+      <span class="search-icon">🔍</span>
+      <input type="text" id="scheme-search" class="search-input" placeholder="Search schemes by name, tag or strategy..." oninput="renderSchemes()"/>
     </div>
   </div>
 
-  <!-- Scheme List -->
+  <!-- Scheme list -->
   <div class="scheme-list" id="scheme-list"></div>
 
   <!-- Trigger bar -->
   <div class="trigger-bar">
     <span class="selected-count">Selected: <strong id="sel-count">0</strong> scheme(s)</span>
-    <button class="btn-trigger" id="trigger-btn" onclick="triggerSuggestion()" disabled>Trigger Suggestion To (Saikumar)</button>
+    <button class="btn-trigger" id="trigger-btn" onclick="triggerSuggestion()" disabled>Trigger Suggestion to Saikumar</button>
   </div>
 
 </div>
 </div>
 
-<!-- ════════════════════════════════
+<!-- ════════════════════════
      VIEW POPUP MODAL
-════════════════════════════════ -->
+════════════════════════ -->
 <div class="modal-overlay" id="view-overlay">
 <div class="view-modal">
   <div class="view-modal-header">
@@ -293,9 +379,8 @@ body{background:#f0f2f5;min-height:100vh;}
 </div>
 
 <script>
-// ─── DATA ───────────────────────────────────────────
 const schemeData = {
-  pms: [
+  pms:[
     {id:'p1',name:'Ayan Analytics Pvlt Ltd - PriceBridge Honeycomb.',logo:'PB',tag:'ETF',tagClass:'',strategy:'Equity',inception:'Jan 2023',r1:'20.59%',r3:'17.88%',r5:'NA',rsi:'15.88%'},
     {id:'p2',name:'JM Financial Limited - Apex',logo:'JM',tag:'Multi Cap & Flexi Cap',tagClass:'multicap',strategy:'Equity',inception:'Feb 2023',r1:'8.99%',r3:'16.82%',r5:'NA',rsi:'16.57%'},
     {id:'p3',name:'Dezerv Investments Pvt Ltd - SHINE',logo:'DZ',tag:'Multi Asset',tagClass:'multiasset',strategy:'Multiasset',inception:'Apr 2025',r1:'61.86%',r3:'NA',r5:'NA',rsi:'60.57%'},
@@ -303,83 +388,76 @@ const schemeData = {
     {id:'p5',name:'Motilal Oswal AMC - Value Strategy',logo:'MO',tag:'Multi Cap & Flexi Cap',tagClass:'multicap',strategy:'Equity',inception:'Jan 2021',r1:'31.20%',r3:'22.10%',r5:'19.80%',rsi:'21.50%'},
     {id:'p6',name:'IIFL Asset Management - Multicap PMS',logo:'IF',tag:'Multi Cap',tagClass:'multicap',strategy:'Equity',inception:'Jun 2020',r1:'27.45%',r3:'19.30%',r5:'18.10%',rsi:'20.00%'},
   ],
-  aif1: [
+  aif1:[
     {id:'a1',name:'Kotak Infrastructure Fund - Series I',logo:'KT',tag:'Infrastructure',tagClass:'equity',strategy:'Infrastructure',inception:'Feb 2022',r1:'18.40%',r3:'NA',r5:'NA',rsi:'16.20%'},
     {id:'a2',name:'360 One AIF - Category I Growth Fund',logo:'36',tag:'Venture Capital',tagClass:'multicap',strategy:'VC',inception:'May 2021',r1:'NA',r3:'NA',r5:'NA',rsi:'NA'},
   ],
-  aif2: [
+  aif2:[
     {id:'b1',name:'Edelweiss Crossover Opportunities Fund',logo:'EW',tag:'Hybrid',tagClass:'multiasset',strategy:'Hybrid',inception:'Oct 2020',r1:'22.10%',r3:'17.50%',r5:'NA',rsi:'18.80%'},
     {id:'b2',name:'Avendus Absolute Return Fund - Series XIV',logo:'AV',tag:'Long Short',tagClass:'smallcap',strategy:'Long Short',inception:'Jan 2023',r1:'14.20%',r3:'NA',r5:'NA',rsi:'12.90%'},
     {id:'b3',name:'ICICI Pru PMS - AIF Cat II Multi-Strategy',logo:'IC',tag:'Multi Strategy',tagClass:'multicap',strategy:'Multi Strategy',inception:'Aug 2021',r1:'19.60%',r3:'15.80%',r5:'NA',rsi:'17.40%'},
   ],
-  aif3: [
+  aif3:[
     {id:'c1',name:'Marcellus Global Compounders - AIF III',logo:'MC',tag:'Long Only',tagClass:'equity',strategy:'Equity',inception:'Nov 2022',r1:'24.30%',r3:'NA',r5:'NA',rsi:'22.10%'},
     {id:'c2',name:'Quant Absolute Fund - AIF Category III',logo:'QT',tag:'Quant',tagClass:'multiasset',strategy:'Quant',inception:'Mar 2023',r1:'31.80%',r3:'NA',r5:'NA',rsi:'29.40%'},
   ],
-  gift1: [
+  gift1:[
     {id:'g1',name:'GIFT City Infrastructure Debt Fund - I',logo:'GI',tag:'Debt',tagClass:'',strategy:'Fixed Income',inception:'Jun 2023',r1:'11.20%',r3:'NA',r5:'NA',rsi:'10.80%'},
   ],
-  gift2: [
+  gift2:[
     {id:'h1',name:'GIFT AMC - Multi Strategy Hybrid Fund',logo:'GA',tag:'Hybrid',tagClass:'multiasset',strategy:'Hybrid',inception:'Sep 2023',r1:'NA',r3:'NA',r5:'NA',rsi:'NA'},
     {id:'h2',name:'Mirae GIFT AIF Cat II - Growth Series',logo:'MG',tag:'Growth',tagClass:'equity',strategy:'Equity',inception:'Jan 2024',r1:'NA',r3:'NA',r5:'NA',rsi:'NA'},
   ],
-  gift3: [
+  gift3:[
     {id:'i1',name:'DSP GIFT Long Short Equity Fund',logo:'DS',tag:'Long Short',tagClass:'smallcap',strategy:'Equity L/S',inception:'Feb 2024',r1:'NA',r3:'NA',r5:'NA',rsi:'NA'},
   ],
 };
 
-const prodLabels = {pms:'PMS',aif1:'AIF (CAT I)',aif2:'AIF (CAT II)',aif3:'AIF (CAT III)',gift1:'GIFT (CAT I)',gift2:'GIFT (CAT II)',gift3:'GIFT (CAT III)'};
-let cart = {};  // id -> scheme obj
-let currentProd = 'pms';
-let historyRecords = [];
-let historyCounter = 0;
+const prodLabels={pms:'PMS',aif1:'AIF (CAT I)',aif2:'AIF (CAT II)',aif3:'AIF (CAT III)',gift1:'GIFT (CAT I)',gift2:'GIFT (CAT II)',gift3:'GIFT (CAT III)'};
+let cart={}, currentProd='pms', historyRecords=[], historyCounter=0;
 
-// ─── TAB SWITCHING ───────────────────────────────────
-function switchTab(name, el) {
+function switchTab(name,el){
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
   el.classList.add('active');
   ['profile','callhistory','notes','meetings','activities','wishlist','suggested'].forEach(t=>{
-    document.getElementById('tab-'+t).style.display = t===name?'block':'none';
+    document.getElementById('tab-'+t).style.display=t===name?'block':'none';
   });
 }
 
-// ─── FUND MODAL ─────────────────────────────────────
-function openFundModal() {
+function openFundModal(){
   document.getElementById('fund-overlay').classList.add('active');
-  const s = document.getElementById('scheme-search');
-  if (s) s.value = '';
-  renderSchemes();
-  renderCart();
+  const s=document.getElementById('scheme-search');
+  if(s) s.value='';
+  renderSchemes(); renderCart();
 }
-function closeFundModal() {
+function closeFundModal(){
   document.getElementById('fund-overlay').classList.remove('active');
 }
 
-function switchProd(prod, el) {
-  currentProd = prod;
+function switchProd(prod,el){
+  currentProd=prod;
   document.querySelectorAll('.prod-tab').forEach(t=>t.classList.remove('active'));
   el.classList.add('active');
-  const s = document.getElementById('scheme-search');
-  if (s) s.value = '';
+  const s=document.getElementById('scheme-search');
+  if(s) s.value='';
   renderSchemes();
 }
 
-function renderSchemes() {
-  const list = document.getElementById('scheme-list');
-  const query = (document.getElementById('scheme-search')?.value || '').toLowerCase().trim();
-  const schemes = (schemeData[currentProd] || []).filter(s =>
-    !query || s.name.toLowerCase().includes(query) || s.tag.toLowerCase().includes(query) || s.strategy.toLowerCase().includes(query)
+function renderSchemes(){
+  const list=document.getElementById('scheme-list');
+  const q=(document.getElementById('scheme-search')?.value||'').toLowerCase().trim();
+  const schemes=(schemeData[currentProd]||[]).filter(s=>
+    !q||s.name.toLowerCase().includes(q)||s.tag.toLowerCase().includes(q)||s.strategy.toLowerCase().includes(q)
   );
-  if (schemes.length === 0) {
-    list.innerHTML = `<div class="no-records" style="padding:30px;">No schemes found matching "<strong>${query}</strong>".</div>`;
+  if(!schemes.length){
+    list.innerHTML=`<div class="no-records">No schemes found${q?' matching "'+q+'"':''}.</div>`;
     return;
   }
-  const naClass = v => v==='NA'?'na':'';
-  list.innerHTML = schemes.map(s => {
-    const sel = cart[s.id] ? 'selected' : '';
-    const tick = cart[s.id] ? '✓' : '+';
-    return `
-    <div class="scheme-card ${sel}" id="card-${s.id}">
+  const nc=v=>v==='NA'?'na':'';
+  list.innerHTML=schemes.map(s=>{
+    const sel=cart[s.id]?'selected':'';
+    const tick=cart[s.id]?'✓':'+';
+    return`<div class="scheme-card ${sel}">
       <div class="scheme-logo-placeholder">${s.logo}</div>
       <div class="scheme-info">
         <div class="scheme-name">${s.name}</div>
@@ -387,121 +465,99 @@ function renderSchemes() {
         <div class="scheme-meta">Inception: ${s.inception} &nbsp;|&nbsp; Strategy: ${s.strategy}</div>
       </div>
       <div class="scheme-returns">
-        <div class="return-col"><div class="return-val ${naClass(s.r1)}">${s.r1}</div><div class="return-label">1 Y</div></div>
-        <div class="return-col"><div class="return-val ${naClass(s.r3)}">${s.r3}</div><div class="return-label">3 Y</div></div>
-        <div class="return-col"><div class="return-val ${naClass(s.r5)}">${s.r5}</div><div class="return-label">5 Y</div></div>
-        <div class="return-col"><div class="return-val ${naClass(s.rsi)}">${s.rsi}</div><div class="return-label">S.I.</div></div>
+        <div class="return-col"><div class="return-val ${nc(s.r1)}">${s.r1}</div><div class="return-label">1 Y</div></div>
+        <div class="return-col"><div class="return-val ${nc(s.r3)}">${s.r3}</div><div class="return-label">3 Y</div></div>
+        <div class="return-col"><div class="return-val ${nc(s.r5)}">${s.r5}</div><div class="return-label">5 Y</div></div>
+        <div class="return-col"><div class="return-val ${nc(s.rsi)}">${s.rsi}</div><div class="return-label">S.I.</div></div>
       </div>
-      <button class="add-btn" onclick="toggleCart('${s.id}','${currentProd}')" title="${cart[s.id]?'Remove from selection':'Add to selection'}">${tick}</button>
+      <button class="add-btn" onclick="toggleCart('${s.id}','${currentProd}')">${tick}</button>
     </div>`;
   }).join('');
 }
 
-function toggleCart(id, prod) {
-  const scheme = schemeData[prod].find(s=>s.id===id);
-  if (!scheme) return;
-  if (cart[id]) {
-    delete cart[id];
-  } else {
-    cart[id] = {...scheme, prod};
-  }
-  renderSchemes();
-  renderCart();
+function toggleCart(id,prod){
+  const s=schemeData[prod].find(x=>x.id===id);
+  if(!s) return;
+  if(cart[id]) delete cart[id];
+  else cart[id]={...s,prod};
+  renderSchemes(); renderCart();
 }
 
-function renderCart() {
-  const pills = document.getElementById('cart-pills');
-  const emptyMsg = document.getElementById('cart-empty-msg');
-  const count = Object.keys(cart).length;
-  document.getElementById('sel-count').textContent = count;
-  document.getElementById('trigger-btn').disabled = count === 0;
-
-  if (count === 0) {
-    emptyMsg.style.display = 'inline';
-    pills.innerHTML = '';
+function renderCart(){
+  const pills=document.getElementById('cart-pills');
+  const emptyMsg=document.getElementById('cart-empty-msg');
+  const count=Object.keys(cart).length;
+  document.getElementById('sel-count').textContent=count;
+  document.getElementById('trigger-btn').disabled=count===0;
+  if(count===0){
+    emptyMsg.style.display='inline'; pills.innerHTML='';
   } else {
-    emptyMsg.style.display = 'none';
-    pills.innerHTML = Object.values(cart).map(s=>`
+    emptyMsg.style.display='none';
+    pills.innerHTML=Object.values(cart).map(s=>`
       <span class="cart-pill">
-        ${s.name.length>35?s.name.slice(0,35)+'…':s.name}
+        ${s.name.length>30?s.name.slice(0,30)+'…':s.name}
         <span class="remove" onclick="toggleCart('${s.id}','${s.prod}')">✕</span>
       </span>`).join('');
   }
 }
 
-// ─── TRIGGER ─────────────────────────────────────────
-function triggerSuggestion() {
-  if (Object.keys(cart).length === 0) return;
+function triggerSuggestion(){
+  if(!Object.keys(cart).length) return;
   historyCounter++;
-  const now = new Date();
-  const dateStr = now.toLocaleDateString('en-IN',{day:'2-digit',month:'2-digit',year:'numeric'}) + ' ' +
+  const now=new Date();
+  const dateStr=now.toLocaleDateString('en-IN',{day:'2-digit',month:'2-digit',year:'numeric'})+' '+
     now.toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false});
-
-  // Group by product
-  const grouped = {};
-  Object.values(cart).forEach(s=>{
-    if (!grouped[s.prod]) grouped[s.prod] = [];
-    grouped[s.prod].push(s);
-  });
-
-  historyRecords.unshift({id:historyCounter, date:dateStr, grouped, allSchemes:Object.values(cart)});
-  cart = {};
+  const grouped={};
+  Object.values(cart).forEach(s=>{ if(!grouped[s.prod]) grouped[s.prod]=[]; grouped[s.prod].push(s); });
+  historyRecords.unshift({id:historyCounter,date:dateStr,grouped,allSchemes:Object.values(cart)});
+  cart={};
   closeFundModal();
   renderHistory();
 }
 
-// ─── HISTORY ─────────────────────────────────────────
-function renderHistory() {
-  const empty = document.getElementById('history-empty');
-  const table = document.getElementById('history-table');
-  const tbody = document.getElementById('history-tbody');
-  if (historyRecords.length === 0) {
-    empty.style.display = 'block'; table.style.display = 'none'; return;
-  }
-  empty.style.display = 'none'; table.style.display = 'table';
-  tbody.innerHTML = historyRecords.map(r=>{
-    const allNames = r.allSchemes.map(s=>
-      `<span class="pill">${s.name.length>28?s.name.slice(0,28)+'…':s.name}</span>`
-    ).join('');
-    return `<tr>
+function renderHistory(){
+  const empty=document.getElementById('history-empty');
+  const table=document.getElementById('history-table');
+  const tbody=document.getElementById('history-tbody');
+  if(!historyRecords.length){ empty.style.display='block'; table.style.display='none'; return; }
+  empty.style.display='none'; table.style.display='table';
+  tbody.innerHTML=historyRecords.map(r=>{
+    const pills=r.allSchemes.map(s=>`<span class="pill">${s.name.length>25?s.name.slice(0,25)+'…':s.name}</span>`).join('');
+    return`<tr>
       <td>${r.id}</td>
       <td style="white-space:nowrap;">${r.date}</td>
-      <td><div class="scheme-pills">${allNames}</div></td>
+      <td><div class="scheme-pills">${pills}</div></td>
       <td><button class="btn-view" onclick="viewRecord(${r.id})">View</button></td>
     </tr>`;
   }).join('');
 }
 
-// ─── VIEW POPUP ───────────────────────────────────────
-function viewRecord(id) {
-  const rec = historyRecords.find(r=>r.id===id);
-  if (!rec) return;
-  const body = document.getElementById('view-modal-body');
-  let html = `<div class="view-date-info">Triggered on: <strong>${rec.date}</strong> &nbsp;|&nbsp; Total schemes: <strong>${rec.allSchemes.length}</strong></div>`;
+function viewRecord(id){
+  const rec=historyRecords.find(r=>r.id===id);
+  if(!rec) return;
+  const body=document.getElementById('view-modal-body');
+  let html=`<div class="view-date-info">Triggered on: <strong>${rec.date}</strong> &nbsp;|&nbsp; Total schemes: <strong>${rec.allSchemes.length}</strong></div>`;
   Object.keys(rec.grouped).forEach(prod=>{
-    html += `<div class="view-product-group">
+    html+=`<div class="view-product-group">
       <div class="view-product-title">${prodLabels[prod]}</div>
       ${rec.grouped[prod].map(s=>`
         <div class="view-scheme-row">
           <div class="view-scheme-dot"></div>
-          <span>${s.name}</span>
-          <span style="margin-left:auto;font-size:11px;color:#888;">${s.strategy}</span>
+          <span style="flex:1;">${s.name}</span>
+          <span style="font-size:11px;color:#888;">${s.strategy}</span>
         </div>`).join('')}
     </div>`;
   });
-  body.innerHTML = html;
+  body.innerHTML=html;
   document.getElementById('view-overlay').classList.add('active');
 }
 
-// close overlays on outside click
-document.getElementById('fund-overlay').addEventListener('click',function(e){
-  if(e.target===this) closeFundModal();
-});
-document.getElementById('view-overlay').addEventListener('click',function(e){
-  if(e.target===this) this.classList.remove('active');
-});
+document.getElementById('fund-overlay').addEventListener('click',function(e){ if(e.target===this) closeFundModal(); });
+document.getElementById('view-overlay').addEventListener('click',function(e){ if(e.target===this) this.classList.remove('active'); });
 </script>
 
-
+<div style="text-align:center;padding:14px;font-size:12px;color:#aaa;border-top:1px solid #e5e7eb;background:#fff;">
+  Copyright &copy; 2026 PMS Bazaar. All Rights Reserved.
+</div>
 </body>
 </html>
