@@ -150,53 +150,129 @@ body{background:#f0f2f5;min-height:100vh;}
 .view-scheme-dot{width:7px;height:7px;border-radius:50%;background:#3b82f6;flex-shrink:0;}
 
 /* ══════════════════════════════
-   MOBILE RESPONSIVE
+   MOBILE RESPONSIVE — FIXED
 ══════════════════════════════ */
 @media (max-width: 768px) {
 
-  /* Action bar */
-  .action-bar{padding:8px 12px;gap:6px;}
-  .btn-action{padding:5px 10px;font-size:11px;}
+  /* Action bar — scrollable row, no wrap so nothing gets cut */
+  .action-bar{
+    padding:8px 12px;
+    gap:6px;
+    overflow-x:auto;
+    flex-wrap:nowrap;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
+  }
+  .action-bar::-webkit-scrollbar{display:none;}
+  .btn-action{padding:6px 12px;font-size:11px;flex-shrink:0;}
 
-  /* Main layout: stack vertically */
-  .main{flex-direction:column;padding:12px;}
+  /* Main layout: full-width stack */
+  .main{flex-direction:column;padding:12px;gap:12px;}
 
-  /* Left panel: horizontal strip on mobile */
-  .left-panel{width:100%;display:flex;flex-wrap:wrap;gap:12px;align-items:flex-start;background:#fff;border-radius:8px;padding:12px;margin-bottom:12px;border:0.5px solid #e0e0e0;}
-  .left-panel .avatar{margin-bottom:0;}
-  .left-panel .lead-name{font-size:15px;}
-  .rm-label,.gen-label{margin-top:6px;}
+  /* LEFT PANEL: clean card at top */
+  .left-panel{
+    width:100%;
+    background:#fff;
+    border-radius:10px;
+    padding:14px;
+    border:0.5px solid #e0e0e0;
+    display:grid;
+    grid-template-columns:auto 1fr;
+    grid-template-rows:auto auto auto;
+    gap:12px 16px;
+    align-items:start;
+  }
+
+  /* Avatar + name block spans left column */
+  .left-panel > div:nth-child(1){
+    grid-column:1;
+    grid-row:1;
+  }
+  /* RM block */
+  .left-panel > div:nth-child(2){
+    grid-column:2;
+    grid-row:1;
+  }
+  /* Notify row */
+  .left-panel > div:nth-child(3){
+    grid-column:1;
+    grid-row:2;
+  }
+  /* Dates block */
+  .left-panel > div:nth-child(4){
+    grid-column:2;
+    grid-row:2;
+  }
+
+  .left-panel .avatar{margin-bottom:4px;width:44px;height:44px;font-size:18px;}
+  .left-panel .lead-name{font-size:14px;}
+  .rm-label,.gen-label{margin-top:0;}
   .notify-row{margin-top:0;}
-  .toggle{margin-top:4px;}
 
   /* Center panel */
-  .center-panel{padding:0;}
+  .center-panel{padding:0;width:100%;}
 
-  /* Detail rows: stack label/value */
-  .detail-label{min-width:unset;width:100%;margin-bottom:2px;}
-  .detail-row{flex-direction:column;gap:2px;}
+  /* Section title */
+  .section-title{font-size:14px;margin-bottom:12px;}
+
+  /* Detail rows: label on top, value below — clean and readable */
+  .detail-row{
+    flex-direction:column;
+    gap:2px;
+    margin-bottom:10px;
+    background:#fff;
+    border-radius:6px;
+    padding:8px 10px;
+    border:0.5px solid #e8eaed;
+  }
+  .detail-label{
+    min-width:unset;
+    width:100%;
+    font-size:11px;
+    color:#888;
+    font-weight:600;
+    text-transform:uppercase;
+    letter-spacing:0.3px;
+  }
+  .detail-value{
+    font-size:13px;
+    color:#1a1a1a;
+    font-weight:500;
+    display:flex;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:4px;
+  }
 
   /* Scheme cards on mobile */
   .scheme-card{flex-wrap:wrap;gap:10px;}
   .scheme-returns{width:100%;justify-content:space-around;border-top:0.5px solid #f0f0f0;padding-top:8px;margin-top:4px;}
   .add-btn{margin-left:auto;}
 
-  /* Fund modal full screen */
+  /* Fund modal: bottom sheet */
   .modal-overlay.active{padding:0;align-items:flex-end;}
-  .fund-modal{border-radius:12px 12px 0 0;max-height:95vh;display:flex;flex-direction:column;}
+  .fund-modal{
+    border-radius:14px 14px 0 0;
+    max-height:92vh;
+    display:flex;
+    flex-direction:column;
+  }
   .scheme-list{flex:1;max-height:none;}
 
-  /* View modal */
-  .modal-overlay.active .view-modal{border-radius:12px 12px 0 0;}
+  /* View modal: bottom sheet */
+  .modal-overlay.active .view-modal{
+    border-radius:14px 14px 0 0;
+    max-height:90vh;
+  }
   .view-scheme-row{flex-direction:column;align-items:flex-start;gap:4px;}
 
-  /* Trigger button full width on small screens */
+  /* Trigger button full width */
   .trigger-bar{flex-direction:column;align-items:stretch;}
   .btn-trigger{text-align:center;}
 
   /* Suggest header */
   .suggest-header{flex-direction:column;align-items:flex-start;}
-  .btn-suggest-new{width:100%;justify-content:center;}
+  .btn-suggest-new{width:100%;text-align:center;}
 }
 
 @media (max-width: 480px) {
@@ -205,6 +281,7 @@ body{background:#f0f2f5;min-height:100vh;}
   .fund-modal-header h3{font-size:13px;}
   .scheme-name{font-size:12px;}
   .return-val{font-size:11px;}
+  .main{padding:10px;}
 }
 </style>
 </head>
@@ -271,17 +348,17 @@ body{background:#f0f2f5;min-height:100vh;}
     <!-- PROFILE TAB -->
     <div id="tab-profile">
       <div class="section-title">Lead Details:</div>
-      <div class="detail-row"><span class="detail-label">Lead Generated from :</span><span class="detail-value">Website_Registration</span></div>
-      <div class="detail-row"><span class="detail-label">Lead Category :</span><span class="detail-value">Investor</span></div>
-      <div class="detail-row"><span class="detail-label">Distributor :</span><span class="detail-value">PMS Bazaar</span></div>
-      <div class="detail-row"><span class="detail-label">Lead Reference ID :</span><span class="detail-value link">✏️</span></div>
-      <div class="detail-row"><span class="detail-label">Lead Type :</span><span class="detail-value">VISITOR</span></div>
-      <div class="detail-row"><span class="detail-label">Contact No :</span><span class="detail-value">+919930042225 <button class="btn-call">Call</button></span></div>
-      <div class="detail-row"><span class="detail-label">Email :</span><span class="detail-value">saikumar.thota@pmsbazaar.com</span></div>
-      <div class="detail-row"><span class="detail-label">Pincode:</span><span class="detail-value">524318</span></div>
-      <div class="detail-row"><span class="detail-label">City :</span><span class="detail-value">Nellore</span></div>
-      <div class="detail-row"><span class="detail-label">State :</span><span class="detail-value">Andhra Pradesh</span></div>
-      <div class="detail-row"><span class="detail-label">Country :</span><span class="detail-value">India</span></div>
+      <div class="detail-row"><span class="detail-label">Lead Generated from</span><span class="detail-value">Website_Registration</span></div>
+      <div class="detail-row"><span class="detail-label">Lead Category</span><span class="detail-value">Investor</span></div>
+      <div class="detail-row"><span class="detail-label">Distributor</span><span class="detail-value">PMS Bazaar</span></div>
+      <div class="detail-row"><span class="detail-label">Lead Reference ID</span><span class="detail-value link">✏️</span></div>
+      <div class="detail-row"><span class="detail-label">Lead Type</span><span class="detail-value">VISITOR</span></div>
+      <div class="detail-row"><span class="detail-label">Contact No</span><span class="detail-value">+919930042225 <button class="btn-call">Call</button></span></div>
+      <div class="detail-row"><span class="detail-label">Email</span><span class="detail-value">saikumar.thota@pmsbazaar.com</span></div>
+      <div class="detail-row"><span class="detail-label">Pincode</span><span class="detail-value">524318</span></div>
+      <div class="detail-row"><span class="detail-label">City</span><span class="detail-value">Nellore</span></div>
+      <div class="detail-row"><span class="detail-label">State</span><span class="detail-value">Andhra Pradesh</span></div>
+      <div class="detail-row"><span class="detail-label">Country</span><span class="detail-value">India</span></div>
     </div>
 
     <!-- PLACEHOLDER TABS -->
