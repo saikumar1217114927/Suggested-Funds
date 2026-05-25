@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Investor Detail – Saikumar</title>
+<title>Investor Detail – Garima Gupta</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:'Segoe UI',Arial,sans-serif;background:#f5f6fa;min-height:100vh;color:#1a1a1a;}
@@ -154,23 +154,54 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:#f5f6fa;min-height:100vh
 .fh-house-tag{font-size:10px;font-weight:700;background:#f3e8ff;color:#6b21a8;padding:1px 7px;border-radius:8px;margin-left:5px;}
 .fh-divider{font-size:11px;color:#aaa;padding:7px 12px 4px;font-weight:600;text-transform:uppercase;letter-spacing:.4px;background:#fafafa;border-bottom:1px solid #f0f0f0;}
 
-/* call history */
-.call-history{margin-top:24px;}
-.call-hist-title{font-size:14px;font-weight:700;margin-bottom:14px;}
-.call-card{border:1px solid #f0f0f0;border-radius:8px;padding:14px 16px;margin-bottom:10px;background:#fafafa;display:flex;gap:14px;align-items:flex-start;flex-wrap:wrap;}
-.call-card-icon{width:38px;height:38px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
-.call-card-icon.google{background:#e8f4fd;}
-.call-card-icon.zoom{background:#e8f0fe;}
-.call-card-icon.phone{background:#f0fdf4;}
-.call-card-body{flex:1;min-width:0;}
-.call-card-top{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:4px;}
-.call-card-type{font-size:13px;font-weight:700;color:#1a1a1a;}
-.call-card-date{font-size:12px;color:#888;}
+/* ── SCHEDULE CALL — LIST FIRST + DRAWER ── */
+.sc-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;}
+.sc-header-title{font-size:15px;font-weight:700;color:#1a1a1a;}
+.call-list-empty{text-align:center;padding:36px 20px;color:#ccc;font-size:14px;border:1.5px dashed #e5e7eb;border-radius:10px;margin-bottom:18px;}
+.call-list-wrap{margin-bottom:4px;}
+.call-row{border:1px solid #e8e8e8;border-radius:10px;padding:14px 16px;margin-bottom:10px;background:#fafafa;display:flex;gap:14px;align-items:flex-start;flex-wrap:wrap;transition:box-shadow .15s;}
+.call-row:hover{box-shadow:0 2px 10px rgba(0,0,0,.07);}
+.call-row.upcoming{border-left:3px solid #c8930a;background:#fffdf5;}
+.call-row.live-row{border-left:3px solid #ef4444;background:#fff5f5;}
+.call-row.completed-row{border-left:3px solid #86efac;opacity:.82;}
+.call-row-icon{width:40px;height:40px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:19px;flex-shrink:0;}
+.call-row-icon.google{background:#e8f4fd;}
+.call-row-icon.zoom{background:#e8f0fe;}
+.call-row-icon.phone{background:#f0fdf4;}
+.call-row-body{flex:1;min-width:0;}
+.call-row-top{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:4px;}
+.call-row-type{font-size:13px;font-weight:700;color:#1a1a1a;}
+.call-row-dt{font-size:12px;color:#777;}
 .call-status{font-size:10px;font-weight:700;padding:2px 9px;border-radius:10px;}
-.status-scheduled{background:#dbeafe;color:#1d4ed8;}
+.status-upcoming{background:#fef3c7;color:#92400e;}
+.status-live{background:#fee2e2;color:#b91c1c;animation:pulse-live 1.4s infinite;}
+@keyframes pulse-live{0%,100%{opacity:1;}50%{opacity:.5;}}
 .status-completed{background:#dcfce7;color:#15803d;}
-.call-card-desc{font-size:12.5px;color:#555;margin-bottom:5px;}
-.call-card-participants{font-size:11px;color:#aaa;}
+.countdown-chip{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:700;color:#c8930a;background:#fffbf2;border:1px solid #fde68a;border-radius:8px;padding:2px 8px;margin-left:2px;}
+.call-row-agenda{font-size:12px;color:#555;margin-bottom:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:480px;}
+.call-row-parts{font-size:11px;color:#aaa;}
+.call-row-actions{display:flex;gap:6px;align-items:center;flex-shrink:0;flex-wrap:wrap;}
+.btn-edit-call{background:#fff;border:1px solid #c8930a;color:#c8930a;border-radius:6px;padding:5px 12px;font-size:12px;font-weight:600;cursor:pointer;}
+.btn-edit-call:hover{background:#fffbf2;}
+.btn-done-call{background:#fff;border:1px solid #86efac;color:#15803d;border-radius:6px;padding:5px 12px;font-size:12px;font-weight:600;cursor:pointer;}
+.btn-done-call:hover{background:#f0fdf4;}
+.btn-del-call{background:#fff;border:1px solid #fecaca;color:#ef4444;border-radius:6px;padding:5px 9px;font-size:12px;cursor:pointer;}
+.btn-del-call:hover{background:#fef2f2;}
+/* drawer */
+.sc-form-drawer{background:#f9f9f9;border:1px solid #e8e8e8;border-radius:12px;padding:22px;margin-top:4px;display:none;}
+.sc-form-drawer.open{display:block;}
+.sc-drawer-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;}
+.sc-drawer-title{font-size:14px;font-weight:700;color:#1a1a1a;}
+.btn-cancel-sc{background:none;border:1px solid #e0e0e0;color:#888;border-radius:6px;padding:6px 14px;font-size:12px;cursor:pointer;}
+.btn-cancel-sc:hover{border-color:#c8930a;color:#c8930a;}
+.sc-footer{display:flex;justify-content:flex-end;gap:10px;margin-top:18px;}
+.btn-submit-sc{background:#c8930a;color:#fff;border:none;border-radius:7px;padding:10px 28px;font-size:14px;font-weight:700;cursor:pointer;}
+.btn-submit-sc:hover{background:#a97608;}
+/* MF/SIF prod tab accents */
+.prod-tab.mf-tab{color:#0f766e;}
+.prod-tab.mf-tab.active{color:#0f766e;border-bottom-color:#0f766e;}
+.prod-tab.sif-tab{color:#6d28d9;}
+.prod-tab.sif-tab.active{color:#6d28d9;border-bottom-color:#6d28d9;}
 
 /* ── NOTES ── */
 .note-composer{background:#fffbf2;border:1px solid #fde68a;border-radius:10px;padding:18px 20px;margin-bottom:22px;}
@@ -220,14 +251,6 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:#f5f6fa;min-height:100vh
 .prod-tab{padding:11px 15px;font-size:12px;font-weight:700;color:#777;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px;white-space:nowrap;flex-shrink:0;}
 .prod-tab:hover{color:#1a1a1a;}
 .prod-tab.active{color:#7c2d12;border-bottom:2px solid #7c2d12;}
-/* MF and SIF get a teal/green accent to distinguish from other product tabs */
-.prod-tab.mf-tab{color:#0f766e;}
-.prod-tab.mf-tab.active{color:#0f766e;border-bottom-color:#0f766e;}
-.prod-tab.sif-tab{color:#6d28d9;}
-.prod-tab.sif-tab.active{color:#6d28d9;border-bottom-color:#6d28d9;}
-/* SIF badge — new product label */
-.scheme-tag.sif{background:#ede9fe;color:#5b21b6;}
-.scheme-tag.mf{background:#ecfdf5;color:#065f46;}
 
 .search-wrap{padding:10px 18px;background:#fafafa;border-bottom:1px solid #f0f0f0;}
 .search-inner{position:relative;}
@@ -342,21 +365,21 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:#f5f6fa;min-height:100vh
 
     <!-- ══ INFO TAB ══ -->
     <div class="detail-body" id="tab-info">
-      <div class="investor-name">Saikumar</div>
+      <div class="investor-name">GARIMA GUPTA</div>
       <div class="investor-code">MyAlt Code: MYALT1737</div>
       <div class="status-badges">
         <span class="badge-active">Active</span>
         <span class="badge-resident">Resident</span>
       </div>
       <div class="info-grid">
-        <div class="info-field"><label>Email</label><div class="val">saikumar.thota@pmsbazaar.com</div></div>
+        <div class="info-field"><label>Email</label><div class="val">GARIMAGUPTA89@GMAIL.COM</div></div>
         <div class="info-field"><label>Mobile</label><div class="val">9870223157</div></div>
         <div class="info-field"><label>PAN</label><div class="val">ANFPG3395Q</div></div>
         <div class="info-field"><label>Inception Date</label><div class="val">2026-05-18</div></div>
       </div>
       <div class="section-header">Personal Information</div>
       <div class="personal-grid">
-        <div class="personal-field"><label>Full Name</label><div class="val">Saikumar</div></div>
+        <div class="personal-field"><label>Full Name</label><div class="val">GARIMA GUPTA</div></div>
         <div class="personal-field"><label>Date of Birth</label><div class="val">–</div></div>
         <div class="personal-field"><label>Gender</label><div class="val">–</div></div>
         <div class="personal-field"><label>Address Line 1</label><div class="val">–</div></div>
@@ -391,127 +414,118 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:#f5f6fa;min-height:100vh
 
     <!-- ══ SCHEDULE CALL TAB ══ -->
     <div class="detail-body" id="tab-schedule" style="display:none;">
-      <div class="tab-action-header">
-        <div class="tab-section-title">Schedule a Call</div>
+
+      <!-- Header: title + button -->
+      <div class="sc-header">
+        <div class="sc-header-title">Scheduled Calls</div>
+        <button class="btn-primary" onclick="openCallForm(null)">📅 + Schedule Call</button>
       </div>
 
-      <div class="schedule-layout">
+      <!-- Call list (shown first, above the form) -->
+      <div class="call-list-wrap">
+        <div class="call-list-empty" id="call-list-empty">No calls scheduled yet. Click "+ Schedule Call" to get started.</div>
+        <div id="call-list"></div>
+      </div>
 
-        <!-- LEFT: Call details form -->
-        <div>
-          <div class="form-card">
-            <div class="form-card-title"><span>📅</span> Call Details</div>
+      <!-- Collapsible form drawer -->
+      <div class="sc-form-drawer" id="sc-form-drawer">
+        <div class="sc-drawer-header">
+          <div class="sc-drawer-title" id="sc-drawer-title">📅 New Scheduled Call</div>
+          <button class="btn-cancel-sc" onclick="closeCallForm()">✕ Cancel</button>
+        </div>
 
-            <div class="form-group">
-              <label>Call Type</label>
-              <div class="call-type-row">
-                <button class="call-type-btn selected" onclick="selectCallType('google',this)"><div class="ctype-icon">🎥</div>Google Meet</button>
-                <button class="call-type-btn" onclick="selectCallType('zoom',this)"><div class="ctype-icon">💻</div>Zoom</button>
-                <button class="call-type-btn" onclick="selectCallType('phone',this)"><div class="ctype-icon">📞</div>Phone Call</button>
+        <div class="schedule-layout">
+
+          <!-- LEFT: Call details -->
+          <div>
+            <div class="form-card">
+              <div class="form-card-title"><span>📅</span> Call Details</div>
+              <div class="form-group">
+                <label>Call Type</label>
+                <div class="call-type-row">
+                  <button class="call-type-btn selected" onclick="selectCallType('google',this)"><div class="ctype-icon">🎥</div>Google Meet</button>
+                  <button class="call-type-btn" onclick="selectCallType('zoom',this)"><div class="ctype-icon">💻</div>Zoom</button>
+                  <button class="call-type-btn" onclick="selectCallType('phone',this)"><div class="ctype-icon">📞</div>Phone Call</button>
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Date</label>
+                <input type="date" class="form-input" id="call-date"/>
+              </div>
+              <div class="form-group">
+                <label>Time</label>
+                <input type="time" class="form-input" id="call-time"/>
+              </div>
+              <div class="form-group">
+                <label>Duration</label>
+                <select class="form-select" id="call-duration">
+                  <option>15 minutes</option>
+                  <option selected>30 minutes</option>
+                  <option>45 minutes</option>
+                  <option>1 hour</option>
+                  <option>1.5 hours</option>
+                  <option>2 hours</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Agenda / Notes</label>
+                <textarea class="form-textarea" id="call-agenda" placeholder="What is this call about?"></textarea>
               </div>
             </div>
+          </div>
 
-            <div class="form-group">
-              <label>Date</label>
-              <input type="date" class="form-input" id="call-date"/>
-            </div>
-            <div class="form-group">
-              <label>Time</label>
-              <input type="time" class="form-input" id="call-time"/>
-            </div>
-            <div class="form-group">
-              <label>Duration</label>
-              <select class="form-select" id="call-duration">
-                <option>15 minutes</option>
-                <option selected>30 minutes</option>
-                <option>45 minutes</option>
-                <option>1 hour</option>
-                <option>1.5 hours</option>
-                <option>2 hours</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label>Agenda / Notes</label>
-              <textarea class="form-textarea" id="call-agenda" placeholder="What is this call about?"></textarea>
+          <!-- RIGHT: Participants -->
+          <div>
+            <div class="form-card">
+              <div class="form-card-title"><span>👥</span> Participants</div>
+              <div class="participant-switcher">
+                <button class="ps-tab active" id="ps-tab-investor" onclick="switchPS('investor')">
+                  <span class="ps-icon">👤</span>Investor<span class="ps-count" id="cnt-investor">1</span>
+                </button>
+                <button class="ps-tab" id="ps-tab-rm" onclick="switchPS('rm')">
+                  <span class="ps-icon">💼</span>RM / Team<span class="ps-count" id="cnt-rm">1</span>
+                </button>
+                <button class="ps-tab" id="ps-tab-fh" onclick="switchPS('fh')">
+                  <span class="ps-icon">🏦</span>Fund House<span class="ps-count" id="cnt-fh">0</span>
+                </button>
+              </div>
+              <div class="participant-summary" id="participant-summary"></div>
+              <div class="participant-panel active" id="panel-investor">
+                <div id="investor-list"></div>
+                <div class="add-row">
+                  <input type="email" class="form-input" id="investor-input" placeholder="Add investor email..." onkeydown="if(event.key==='Enter')addPerson('investor')"/>
+                  <button class="btn-add" onclick="addPerson('investor')">+ Add</button>
+                </div>
+              </div>
+              <div class="participant-panel" id="panel-rm">
+                <div id="rm-list"></div>
+                <div class="add-row">
+                  <input type="email" class="form-input" id="rm-input" placeholder="Add team member email..." onkeydown="if(event.key==='Enter')addPerson('rm')"/>
+                  <button class="btn-add" onclick="addPerson('rm')">+ Add</button>
+                </div>
+              </div>
+              <div class="participant-panel" id="panel-fh">
+                <div id="fh-list"></div>
+                <div class="fh-search-wrap" style="margin-top:4px;">
+                  <input type="text" class="form-input" id="fh-search" placeholder="Search fund house or contact name..." oninput="onFHSearch()" onfocus="onFHSearch()" autocomplete="off"/>
+                  <div class="fh-dropdown" id="fh-dropdown" style="display:none;"></div>
+                </div>
+                <div class="add-row" style="margin-top:8px;">
+                  <input type="email" class="form-input" id="fh-manual-input" placeholder="Or add email manually..." onkeydown="if(event.key==='Enter')addFHManual()"/>
+                  <button class="btn-add" onclick="addFHManual()">+ Add</button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
 
-        <!-- RIGHT: Participants (3-tab switcher) -->
-        <div>
-          <div class="form-card">
-            <div class="form-card-title"><span>👥</span> Participants</div>
-
-            <!-- Switcher -->
-            <div class="participant-switcher">
-              <button class="ps-tab active" id="ps-tab-investor" onclick="switchPS('investor')">
-                <span class="ps-icon">👤</span>
-                Investor
-                <span class="ps-count" id="cnt-investor">1</span>
-              </button>
-              <button class="ps-tab" id="ps-tab-rm" onclick="switchPS('rm')">
-                <span class="ps-icon">💼</span>
-                RM / Team
-                <span class="ps-count" id="cnt-rm">1</span>
-              </button>
-              <button class="ps-tab" id="ps-tab-fh" onclick="switchPS('fh')">
-                <span class="ps-icon">🏦</span>
-                Fund House
-                <span class="ps-count" id="cnt-fh">0</span>
-              </button>
-            </div>
-
-            <!-- Summary chips -->
-            <div class="participant-summary" id="participant-summary"></div>
-
-            <!-- Panel: Investor -->
-            <div class="participant-panel active" id="panel-investor">
-              <div id="investor-list"></div>
-              <div class="add-row">
-                <input type="email" class="form-input" id="investor-input" placeholder="Add investor email..." onkeydown="if(event.key==='Enter')addPerson('investor')"/>
-                <button class="btn-add" onclick="addPerson('investor')">+ Add</button>
-              </div>
-            </div>
-
-            <!-- Panel: RM / Team -->
-            <div class="participant-panel" id="panel-rm">
-              <div id="rm-list"></div>
-              <div class="add-row">
-                <input type="email" class="form-input" id="rm-input" placeholder="Add team member email..." onkeydown="if(event.key==='Enter')addPerson('rm')"/>
-                <button class="btn-add" onclick="addPerson('rm')">+ Add</button>
-              </div>
-            </div>
-
-            <!-- Panel: Fund House -->
-            <div class="participant-panel" id="panel-fh">
-              <div id="fh-list"></div>
-
-              <!-- search from directory -->
-              <div class="fh-search-wrap" style="margin-top:4px;">
-                <input type="text" class="form-input" id="fh-search" placeholder="Search fund house or contact name..." oninput="onFHSearch()" onfocus="onFHSearch()" autocomplete="off"/>
-                <div class="fh-dropdown" id="fh-dropdown" style="display:none;"></div>
-              </div>
-
-              <!-- manual fallback -->
-              <div class="add-row" style="margin-top:8px;">
-                <input type="email" class="form-input" id="fh-manual-input" placeholder="Or add email manually..." onkeydown="if(event.key==='Enter')addFHManual()"/>
-                <button class="btn-add" onclick="addFHManual()">+ Add</button>
-              </div>
-            </div>
-          </div>
+        <!-- Drawer footer -->
+        <div class="sc-footer">
+          <button class="btn-cancel-sc" onclick="closeCallForm()">Cancel</button>
+          <button class="btn-submit-sc" id="btn-submit-sc" onclick="submitCall()">📅 Schedule Call</button>
         </div>
       </div>
 
-      <!-- Schedule button -->
-      <div style="display:flex;justify-content:flex-end;margin-top:14px;">
-        <button class="btn-primary" onclick="scheduleCall()" style="padding:10px 28px;font-size:14px;">📅 Schedule Call</button>
-      </div>
-
-      <!-- Call history -->
-      <div class="call-history" id="call-history-section" style="display:none;">
-        <div class="call-hist-title">Scheduled Calls</div>
-        <div id="call-history-list"></div>
-      </div>
     </div>
 
     <!-- ══ NOTES TAB ══ -->
@@ -563,7 +577,7 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:#f5f6fa;min-height:100vh
   <div class="scheme-list-wrap" id="scheme-list"></div>
   <div class="trigger-bar">
     <span class="selected-count">Selected: <strong id="sel-count">0</strong> scheme(s)</span>
-    <button class="btn-trigger" id="trigger-btn" onclick="triggerSuggestion()" disabled>Trigger Suggestion to Saikumar</button>
+    <button class="btn-trigger" id="trigger-btn" onclick="triggerSuggestion()" disabled>Trigger Suggestion to Garima Gupta</button>
   </div>
 </div>
 </div>
@@ -650,7 +664,7 @@ const schemeData={
     {id:'mf4',name:'HDFC Balanced Advantage Fund - Direct Growth',logo:'HD',tag:'Balanced Advantage',tagClass:'multiasset',strategy:'Hybrid',inception:'Jan 2013',r1:'20.15%',r3:'16.40%',r5:'17.90%',rsi:'17.20%'},
     {id:'mf5',name:'SBI Contra Fund - Direct Growth',logo:'SB',tag:'Contra',tagClass:'multicap',strategy:'Equity',inception:'Jan 2013',r1:'25.30%',r3:'21.80%',r5:'19.60%',rsi:'20.40%'},
     {id:'mf6',name:'Nippon India Multi Cap Fund - Direct Growth',logo:'NI',tag:'Multi Cap',tagClass:'multicap',strategy:'Equity',inception:'Mar 2005',r1:'28.70%',r3:'22.10%',r5:'20.30%',rsi:'18.60%'},
-    {id:'mf7',name:'Quant Active Fund - Direct Growth',logo:'QT',tag:'Multi Cap',tagClass:'multicap',strategy:'Quant',inception:'Jan 2013',r1:'33.40%',r3:'26.80%',r5:'28.50%',rsi:'27.10%'},
+    {id:'mf7',name:'Quant Active Fund - Direct Growth',logo:'QA',tag:'Multi Cap',tagClass:'multicap',strategy:'Quant',inception:'Jan 2013',r1:'33.40%',r3:'26.80%',r5:'28.50%',rsi:'27.10%'},
     {id:'mf8',name:'ICICI Pru Technology Fund - Direct Growth',logo:'IC',tag:'Sectoral',tagClass:'equity',strategy:'Technology',inception:'Mar 2000',r1:'19.80%',r3:'18.20%',r5:'22.60%',rsi:'15.40%'},
     {id:'mf9',name:'Canara Robeco Bluechip Equity Fund - Direct',logo:'CR',tag:'Large Cap',tagClass:'equity',strategy:'Equity',inception:'Aug 2010',r1:'17.90%',r3:'13.80%',r5:'15.60%',rsi:'14.20%'},
     {id:'mf10',name:'Kotak Emerging Equity Fund - Direct Growth',logo:'KT',tag:'Mid Cap',tagClass:'multicap',strategy:'Equity',inception:'Mar 2007',r1:'29.40%',r3:'23.60%',r5:'24.80%',rsi:'22.90%'},
@@ -673,7 +687,7 @@ const ALL_TABS=['info','family','investments','transactions','valuations','sugge
 ══════════════════════════════════════ */
 let participants = {
   investor: [
-    {name:'Saikumar', email:'saikumar.thota@pmsbazaar.com', sub:'saikumar.thota@pmsbazaar.com | 9870223157', initials:'GG', avClass:'av-investor', badgeClass:'pb-investor', label:'Investor', locked:true}
+    {name:'Garima Gupta', email:'garimagupta89@gmail.com', sub:'garimagupta89@gmail.com | 9870223157', initials:'GG', avClass:'av-investor', badgeClass:'pb-investor', label:'Investor', locked:true}
   ],
   rm: [
     {name:'Saikumar (RM)', email:'saikumar.thota@pmsbazaar.com', sub:'saikumar.thota@pmsbazaar.com', initials:'SK', avClass:'av-rm', badgeClass:'pb-rm', label:'RM', locked:true}
@@ -836,6 +850,8 @@ function switchTab(name, el) {
     renderParticipantGroup('investor');
     renderParticipantGroup('rm');
     renderParticipantGroup('fh');
+    renderCallList();
+    startCallTicker();
   }
   if(name==='notes') startNoteClock();
 }
@@ -871,21 +887,12 @@ function renderSchemes() {
   const list=document.getElementById('scheme-list');
   const q=(document.getElementById('scheme-search')?.value||'').toLowerCase().trim();
   const schemes=(schemeData[currentProd]||[]).filter(s=>!q||s.name.toLowerCase().includes(q)||s.tag.toLowerCase().includes(q)||s.strategy.toLowerCase().includes(q));
-
-  // product-level info banners
   let banner='';
   if(currentProd==='sif'){
-    banner=`<div style="background:#ede9fe;border:1px solid #c4b5fd;border-radius:8px;padding:10px 14px;margin-bottom:12px;font-size:12px;color:#5b21b6;display:flex;align-items:center;gap:8px;">
-      <span style="font-size:16px;">🆕</span>
-      <div><strong>Specialised Investment Fund (SIF)</strong> — New SEBI regulated product. Min. investment ₹10 Lakhs. Returns not yet available for recently launched strategies.</div>
-    </div>`;
+    banner=`<div style="background:#ede9fe;border:1px solid #c4b5fd;border-radius:8px;padding:10px 14px;margin-bottom:12px;font-size:12px;color:#5b21b6;display:flex;align-items:center;gap:8px;"><span style="font-size:16px;">🆕</span><div><strong>Specialised Investment Fund (SIF)</strong> — New SEBI regulated product. Min. investment ₹10 Lakhs. Returns not yet available for recently launched strategies.</div></div>`;
   } else if(currentProd==='mf'){
-    banner=`<div style="background:#ecfdf5;border:1px solid #6ee7b7;border-radius:8px;padding:10px 14px;margin-bottom:12px;font-size:12px;color:#065f46;display:flex;align-items:center;gap:8px;">
-      <span style="font-size:16px;">📊</span>
-      <div><strong>Mutual Funds</strong> — Direct growth plans. Returns are absolute for 1Y and CAGR for 3Y/5Y. Daily NAV-based liquidity.</div>
-    </div>`;
+    banner=`<div style="background:#ecfdf5;border:1px solid #6ee7b7;border-radius:8px;padding:10px 14px;margin-bottom:12px;font-size:12px;color:#065f46;display:flex;align-items:center;gap:8px;"><span style="font-size:16px;">📊</span><div><strong>Mutual Funds</strong> — Direct growth plans. Returns are absolute for 1Y and CAGR for 3Y/5Y. Daily NAV-based liquidity.</div></div>`;
   }
-
   if(!schemes.length){list.innerHTML=banner+`<div class="no-records">No schemes found${q?' for "'+q+'"':''}.</div>`;return;}
   const nc=v=>v==='NA'?'na':'';
   list.innerHTML=banner+schemes.map(s=>{
@@ -962,73 +969,203 @@ function viewSF(id) {
 }
 
 /* ══════════════════════════════════════
-   SCHEDULE CALL
+   SCHEDULE CALL — LIST FIRST + DRAWER + EDIT
 ══════════════════════════════════════ */
-let callType='google', callRecords=[], callCounter=0;
+let callType='google', callRecords=[], callCounter=0, editingCallId=null, callTicker=null;
 
-function selectCallType(type, el) {
+const TYPE_LABELS={google:'Google Meet',zoom:'Zoom',phone:'Phone Call'};
+const TYPE_ICONS={google:'🎥',zoom:'💻',phone:'📞'};
+const DUR_MINS={'15 minutes':15,'30 minutes':30,'45 minutes':45,'1 hour':60,'1.5 hours':90,'2 hours':120};
+
+function selectCallType(type,el){
   callType=type;
   document.querySelectorAll('.call-type-btn').forEach(b=>b.classList.remove('selected'));
   el.classList.add('selected');
 }
 
-function scheduleCall() {
+/* ── open form: null = new call, id = edit existing ── */
+function openCallForm(id){
+  const drawer=document.getElementById('sc-form-drawer');
+  const titleEl=document.getElementById('sc-drawer-title');
+  const submitBtn=document.getElementById('btn-submit-sc');
+
+  if(id===null){
+    // NEW
+    editingCallId=null;
+    titleEl.textContent='📅 New Scheduled Call';
+    submitBtn.textContent='📅 Schedule Call';
+    // reset fields
+    document.getElementById('call-date').value=new Date().toISOString().split('T')[0];
+    document.getElementById('call-time').value='';
+    document.getElementById('call-duration').value='30 minutes';
+    document.getElementById('call-agenda').value='';
+    callType='google';
+    document.querySelectorAll('.call-type-btn').forEach((b,i)=>{b.classList.toggle('selected',i===0);});
+  } else {
+    // EDIT
+    const r=callRecords.find(c=>c.id===id); if(!r) return;
+    editingCallId=id;
+    titleEl.textContent='✏️ Edit Scheduled Call';
+    submitBtn.textContent='💾 Update Call';
+    document.getElementById('call-date').value=r.rawDate;
+    document.getElementById('call-time').value=r.rawTime;
+    document.getElementById('call-duration').value=r.duration;
+    document.getElementById('call-agenda').value=r.agenda||'';
+    callType=r.type;
+    document.querySelectorAll('.call-type-btn').forEach(b=>{
+      const txt=b.textContent.toLowerCase();
+      b.classList.toggle('selected',
+        (r.type==='google'&&txt.includes('google'))||
+        (r.type==='zoom'&&txt.includes('zoom'))||
+        (r.type==='phone'&&txt.includes('phone')));
+    });
+  }
+
+  drawer.classList.add('open');
+  drawer.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+function closeCallForm(){
+  document.getElementById('sc-form-drawer').classList.remove('open');
+  editingCallId=null;
+}
+
+/* ── compute status from timestamps ── */
+function callStatus(r){
+  if(r.manualDone) return 'completed';
+  const now=Date.now();
+  const start=new Date(r.rawDate+'T'+r.rawTime).getTime();
+  const end=start+(DUR_MINS[r.duration]||30)*60000;
+  if(now>=end) return 'completed';
+  if(now>=start) return 'live';
+  return 'upcoming';
+}
+
+function countdownText(r){
+  const diff=new Date(r.rawDate+'T'+r.rawTime).getTime()-Date.now();
+  if(diff<=0) return null;
+  const s=Math.floor(diff/1000);
+  const d=Math.floor(s/86400), h=Math.floor((s%86400)/3600), m=Math.floor((s%3600)/60), sec=s%60;
+  if(d>0) return `in ${d}d ${h}h`;
+  if(h>0) return `in ${h}h ${m}m`;
+  if(m>0) return `in ${m}m ${sec}s`;
+  return `in ${sec}s`;
+}
+
+/* ── submit (create or update) ── */
+function submitCall(){
   const date=document.getElementById('call-date').value;
   const time=document.getElementById('call-time').value;
   const duration=document.getElementById('call-duration').value;
   const agenda=(document.getElementById('call-agenda').value||'').trim();
   if(!date||!time){alert('Please select a date and time.');return;}
-  callCounter++;
-  const typeLabels={google:'Google Meet',zoom:'Zoom',phone:'Phone Call'};
-  const typeIcons={google:'🎥',zoom:'💻',phone:'📞'};
+
   const dt=new Date(date+'T'+time);
-  const dateStr=dt.toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'})+' at '+dt.toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit',hour12:true});
-  callRecords.unshift({
-    id:callCounter, type:callType, label:typeLabels[callType], icon:typeIcons[callType],
-    date:dateStr, duration, agenda,
-    investors:[...participants.investor],
-    team:[...participants.rm],
-    fundHouse:[...participants.fh],
-    status:'scheduled',
-    created:fmtDate(new Date())+' '+fmtTime(new Date())
-  });
-  document.getElementById('call-date').value='';
-  document.getElementById('call-time').value='';
-  document.getElementById('call-agenda').value='';
-  renderCallHistory();
+  const dateStr=dt.toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'})+
+                ' at '+dt.toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit',hour12:true});
+
+  if(editingCallId!==null){
+    const r=callRecords.find(c=>c.id===editingCallId);
+    if(!r) return;
+    r.type=callType; r.label=TYPE_LABELS[callType]; r.icon=TYPE_ICONS[callType];
+    r.rawDate=date; r.rawTime=time; r.date=dateStr; r.duration=duration; r.agenda=agenda;
+    r.manualDone=false;
+  } else {
+    callCounter++;
+    callRecords.unshift({
+      id:callCounter,
+      type:callType, label:TYPE_LABELS[callType], icon:TYPE_ICONS[callType],
+      rawDate:date, rawTime:time, date:dateStr, duration, agenda,
+      investors:[...participants.investor],
+      team:[...participants.rm],
+      fundHouse:[...participants.fh],
+      manualDone:false,
+    });
+  }
+
+  closeCallForm();
+  renderCallList();
+  updateBadge('sc-badge',callRecords.length);
+  startCallTicker();
+}
+
+function markCallDone(id){
+  const r=callRecords.find(c=>c.id===id); if(!r) return;
+  r.manualDone=true;
+  renderCallList();
+}
+
+function deleteCall(id){
+  if(!confirm('Delete this scheduled call?')) return;
+  callRecords=callRecords.filter(c=>c.id!==id);
+  renderCallList();
   updateBadge('sc-badge',callRecords.length);
 }
 
-function renderCallHistory() {
-  const section=document.getElementById('call-history-section');
-  const list=document.getElementById('call-history-list');
-  if(!callRecords.length){section.style.display='none';return;}
-  section.style.display='block';
-  list.innerHTML=callRecords.map(r=>{
-    const invNames=r.investors.map(i=>i.name).join(', ');
-    const teamNames=r.team.map(t=>t.name).join(', ');
-    const fhNames=r.fundHouse.map(f=>f.name).join(', ');
-    const fhLine=r.fundHouse.length ? `&nbsp;|&nbsp; 🏦 Fund House: ${escHtml(fhNames)}` : '';
-    return`<div class="call-card">
-      <div class="call-card-icon ${r.type}">${r.icon}</div>
-      <div class="call-card-body">
-        <div class="call-card-top">
-          <span class="call-card-type">${r.label}</span>
-          <span class="call-card-date">📅 ${r.date} &nbsp;•&nbsp; ⏱ ${r.duration}</span>
-          <span class="call-status status-${r.status}">${r.status.charAt(0).toUpperCase()+r.status.slice(1)}</span>
+function renderCallList(){
+  const emptyEl=document.getElementById('call-list-empty');
+  const listEl=document.getElementById('call-list');
+  if(!callRecords.length){emptyEl.style.display='block';listEl.innerHTML='';return;}
+  emptyEl.style.display='none';
+
+  // sort: live first, then upcoming by date, then completed
+  const order={live:0,upcoming:1,completed:2};
+  const sorted=[...callRecords].sort((a,b)=>{
+    const sa=callStatus(a), sb=callStatus(b);
+    if(order[sa]!==order[sb]) return order[sa]-order[sb];
+    return new Date(a.rawDate+'T'+a.rawTime)-new Date(b.rawDate+'T'+b.rawTime);
+  });
+
+  listEl.innerHTML=sorted.map(r=>{
+    const st=callStatus(r);
+    const cd=st==='upcoming'?countdownText(r):null;
+    const rowCls=st==='live'?'live-row':st==='completed'?'completed-row':'upcoming';
+    const stLabel={upcoming:'Upcoming',live:'🔴 Live Now',completed:'Completed'}[st];
+    const stCls={upcoming:'status-upcoming',live:'status-live',completed:'status-completed'}[st];
+    const inv=r.investors.map(i=>i.name).join(', ');
+    const tm=r.team.map(t=>t.name).join(', ');
+    const fh=r.fundHouse.length?' &nbsp;|&nbsp; 🏦 '+escHtml(r.fundHouse.map(f=>f.name).join(', ')):'';
+    const editBtn=st!=='completed'
+      ?`<button class="btn-edit-call" onclick="openCallForm(${r.id})">✏️ Edit</button>`:'';
+    const doneBtn=st!=='completed'
+      ?`<button class="btn-done-call" onclick="markCallDone(${r.id})">✓ Done</button>`:'';
+    const cdChip=cd?`<span class="countdown-chip" id="cd-${r.id}">⏰ ${cd}</span>`:'';
+    return`<div class="call-row ${rowCls}" id="call-row-${r.id}">
+      <div class="call-row-icon ${r.type}">${r.icon}</div>
+      <div class="call-row-body">
+        <div class="call-row-top">
+          <span class="call-row-type">${r.label}</span>
+          <span class="call-row-dt">📅 ${r.date} &nbsp;•&nbsp; ⏱ ${r.duration}</span>
+          <span class="call-status ${stCls}">${stLabel}</span>${cdChip}
         </div>
-        ${r.agenda?`<div class="call-card-desc">${escHtml(r.agenda)}</div>`:''}
-        <div class="call-card-participants">👤 Investors: ${escHtml(invNames)} &nbsp;|&nbsp; 💼 Team: ${escHtml(teamNames)}${fhLine}</div>
+        ${r.agenda?`<div class="call-row-agenda">${escHtml(r.agenda)}</div>`:''}
+        <div class="call-row-parts">👤 ${escHtml(inv)} &nbsp;|&nbsp; 💼 ${escHtml(tm)}${fh}</div>
       </div>
-      <button class="btn-icon" onclick="markCallDone(${r.id})">✓ Done</button>
+      <div class="call-row-actions">
+        ${editBtn}${doneBtn}
+        <button class="btn-del-call" onclick="deleteCall(${r.id})" title="Delete">🗑</button>
+      </div>
     </div>`;
   }).join('');
 }
 
-function markCallDone(id) {
-  const r=callRecords.find(c=>c.id===id);
-  if(r) r.status='completed';
-  renderCallHistory();
+/* ── live countdown ticker ── */
+function startCallTicker(){
+  if(callTicker) return;
+  callTicker=setInterval(()=>{
+    let needFull=false;
+    callRecords.forEach(r=>{
+      const st=callStatus(r);
+      const row=document.getElementById('call-row-'+r.id);
+      if(!row){needFull=true;return;}
+      const wasSt=row.classList.contains('completed-row')?'completed':
+                  row.classList.contains('live-row')?'live':'upcoming';
+      if(wasSt!==st){needFull=true;return;}
+      const cd=document.getElementById('cd-'+r.id);
+      if(cd&&st==='upcoming'){const t=countdownText(r);if(t)cd.textContent='⏰ '+t;else needFull=true;}
+    });
+    if(needFull) renderCallList();
+  },1000);
 }
 
 /* ══════════════════════════════════════
