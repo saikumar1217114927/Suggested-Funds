@@ -3,391 +3,546 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Lead Details – Suggested Funds</title>
+<title>Investor Detail – Garima Gupta</title>
 <style>
-*{box-sizing:border-box;margin:0;padding:0;font-family:'Segoe UI',Arial,sans-serif;}
-body{background:#f0f2f5;min-height:100vh;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Segoe UI',Arial,sans-serif;background:#f5f6fa;min-height:100vh;color:#1a1a1a;}
 
-/* ── TOP BAR ── */
-.topbar{background:#2c3e50;color:#fff;padding:12px 20px;font-size:15px;font-weight:600;display:flex;justify-content:space-between;align-items:center;}
-.topbar .close-x{cursor:pointer;font-size:18px;color:#aaa;}
-.topbar .close-x:hover{color:#fff;}
+/* ── TOP NAV ── */
+.topnav{background:#fff;border-bottom:1px solid #e8e8e8;padding:0 24px;height:54px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50;}
+.topnav-left{display:flex;align-items:center;gap:10px;}
+.menu-btn{width:34px;height:34px;border:1px solid #e0e0e0;border-radius:6px;background:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;color:#555;font-size:16px;}
+.page-title{font-size:15px;font-weight:700;color:#1a1a1a;}
+.topnav-right{display:flex;align-items:center;gap:12px;}
+.theme-btn{width:32px;height:32px;border-radius:50%;border:1px solid #e0e0e0;background:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;color:#555;font-size:15px;}
+.user-btn{display:flex;align-items:center;gap:8px;cursor:pointer;padding:4px 10px;border-radius:20px;border:1px solid #e8e8e8;background:#fff;}
+.user-avatar{width:28px;height:28px;border-radius:50%;background:#fef3c7;display:flex;align-items:center;justify-content:center;font-size:13px;}
+.user-name{font-size:13px;color:#333;font-weight:500;}
+
+/* ── PAGE CONTENT ── */
+.page-content{padding:20px 24px;}
+
+/* ── ACCOUNTS CARD ── */
+.accounts-card{background:#fff;border-radius:10px;padding:18px 22px;border:1px solid #e8e8e8;margin-bottom:18px;}
+.accounts-title{font-size:13.5px;font-weight:700;color:#1a1a1a;margin-bottom:14px;}
+.account-item{border:1.5px solid #f0c040;border-radius:8px;padding:12px 16px;background:#fffdf0;max-width:320px;cursor:pointer;}
+.account-header{display:flex;align-items:center;justify-content:space-between;}
+.account-label{display:flex;align-items:center;gap:8px;}
+.account-type{font-size:13px;font-weight:600;color:#c8930a;}
+.account-count{font-size:13px;color:#555;}
+.account-check{color:#c8930a;font-size:16px;font-weight:700;}
+.account-holders{font-size:11px;color:#888;margin-top:5px;}
+
+/* ── DETAIL CARD ── */
+.detail-card{background:#fff;border-radius:10px;border:1px solid #e8e8e8;overflow:hidden;}
 
 /* ── TABS ── */
-.tabs{background:#fff;border-bottom:1px solid #e0e0e0;display:flex;gap:0;padding:0 12px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
-.tabs::-webkit-scrollbar{display:none;}
-.tab{padding:12px 14px;font-size:13px;color:#555;cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;flex-shrink:0;}
-.tab:hover{color:#3b82f6;}
-.tab.active{color:#3b82f6;border-bottom:2px solid #3b82f6;font-weight:600;}
+.detail-tabs{display:flex;border-bottom:1.5px solid #f0f0f0;padding:0 22px;overflow-x:auto;scrollbar-width:none;}
+.detail-tabs::-webkit-scrollbar{display:none;}
+.dtab{padding:14px 4px;margin-right:22px;font-size:13px;color:#888;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1.5px;white-space:nowrap;display:flex;align-items:center;gap:6px;flex-shrink:0;transition:color .15s;}
+.dtab:hover{color:#c8930a;}
+.dtab.active{color:#c8930a;border-bottom:2px solid #c8930a;font-weight:600;}
+.dtab-badge{font-size:10px;font-weight:700;padding:1px 6px;border-radius:10px;min-width:18px;text-align:center;line-height:16px;background:#aab;color:#fff;}
+.dtab.active .dtab-badge{background:#c8930a;}
 
-/* ── MAIN LAYOUT ── */
-.main{display:flex;gap:0;padding:20px;min-height:calc(100vh - 160px);}
-.left-panel{width:210px;flex-shrink:0;}
-.center-panel{flex:1;padding:0 24px;min-width:0;}
+/* ── DETAIL BODY ── */
+.detail-body{padding:26px 22px;}
 
-/* ── PROFILE CARD ── */
-.avatar{width:52px;height:52px;border-radius:50%;background:#e0e7ff;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:8px;}
-.lead-name{font-size:16px;font-weight:700;color:#1a1a1a;}
-.badge-new{background:#3b82f6;color:#fff;font-size:10px;padding:2px 8px;border-radius:10px;display:inline-block;margin-top:4px;}
-.rm-label{font-size:12px;color:#888;margin-top:14px;}
-.rm-name{font-size:13px;color:#3b82f6;font-weight:600;margin-top:2px;}
-.notify-row{margin-top:16px;font-size:12px;color:#555;font-weight:600;}
-.toggle{display:inline-block;width:38px;height:20px;background:#10b981;border-radius:10px;position:relative;cursor:pointer;margin-top:6px;vertical-align:middle;}
-.toggle::after{content:'';position:absolute;width:16px;height:16px;background:#fff;border-radius:50%;top:2px;right:2px;}
-.gen-label{font-size:12px;color:#888;margin-top:18px;font-weight:600;}
-.gen-value{font-size:13px;color:#1a1a1a;margin-top:2px;}
+.investor-name{font-size:21px;font-weight:800;color:#1a1a1a;margin-bottom:3px;}
+.investor-code{font-size:13px;color:#999;margin-bottom:10px;}
+.status-badges{display:flex;gap:8px;margin-bottom:20px;}
+.badge-active{background:#dcfce7;color:#16a34a;font-size:11px;font-weight:600;padding:3px 12px;border-radius:20px;}
+.badge-resident{background:#e0f2fe;color:#0369a1;font-size:11px;font-weight:600;padding:3px 12px;border-radius:20px;}
 
-/* ── LEAD DETAILS ── */
-.section-title{font-size:15px;font-weight:700;color:#1a1a1a;margin-bottom:14px;}
-.detail-row{display:flex;gap:6px;margin-bottom:8px;font-size:13px;flex-wrap:wrap;}
-.detail-label{color:#888;min-width:150px;}
-.detail-value{color:#1a1a1a;font-weight:500;}
-.detail-value.link{color:#3b82f6;}
-.btn-call{background:#3b82f6;color:#fff;border:none;border-radius:16px;padding:3px 14px;font-size:12px;cursor:pointer;margin-left:8px;}
+.info-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px 22px;margin-bottom:26px;}
+.info-field label{font-size:11px;color:#999;font-weight:500;display:block;margin-bottom:3px;}
+.info-field .val{font-size:13.5px;color:#1a1a1a;font-weight:600;}
+.section-header{font-size:14px;font-weight:700;color:#1a1a1a;margin-bottom:14px;}
+.personal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px 22px;}
+.personal-field label{font-size:11px;color:#999;font-weight:500;display:block;margin-bottom:3px;}
+.personal-field .val{font-size:13px;color:#1a1a1a;font-weight:500;}
 
-/* ── SUGGESTED FUNDS TAB ── */
-.suggest-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;flex-wrap:wrap;gap:10px;}
-.btn-suggest-new{background:#3b82f6;color:#fff;border:none;border-radius:6px;padding:9px 18px;font-size:13px;font-weight:600;cursor:pointer;}
-.btn-suggest-new:hover{background:#2563eb;}
+.no-records{text-align:center;padding:48px 20px;color:#ccc;font-size:14px;}
 
-/* ── HISTORY TABLE ── */
-.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
-.history-table{width:100%;border-collapse:collapse;font-size:13px;min-width:520px;}
-.history-table th{background:#f8f9fa;padding:10px 12px;text-align:left;font-weight:600;color:#555;border-bottom:1.5px solid #e0e0e0;}
-.history-table td{padding:10px 12px;border-bottom:0.5px solid #e9ecef;color:#1a1a1a;vertical-align:middle;}
-.history-table tr:hover td{background:#f8f9ff;}
+/* ── SUGGESTED FUNDS ── */
+.tab-action-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;}
+.tab-section-title{font-size:15px;font-weight:700;}
+.btn-primary{background:#c8930a;color:#fff;border:none;border-radius:6px;padding:9px 18px;font-size:13px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:6px;}
+.btn-primary:hover{background:#a97608;}
+.table-wrap{overflow-x:auto;}
+.data-table{width:100%;border-collapse:collapse;font-size:13px;}
+.data-table th{background:#fafafa;padding:10px 14px;text-align:left;font-weight:600;color:#666;border-bottom:1.5px solid #f0f0f0;white-space:nowrap;}
+.data-table td{padding:10px 14px;border-bottom:1px solid #f5f5f5;color:#1a1a1a;vertical-align:middle;}
+.data-table tr:hover td{background:#fffdf5;}
 .scheme-pills{display:flex;gap:4px;flex-wrap:wrap;}
-.pill{background:#e0e7ff;color:#3730a3;font-size:11px;padding:2px 8px;border-radius:10px;}
-.btn-view{background:#fff;border:1px solid #3b82f6;color:#3b82f6;border-radius:5px;padding:4px 12px;font-size:12px;cursor:pointer;font-weight:600;white-space:nowrap;}
-.btn-view:hover{background:#eff6ff;}
-.no-records{text-align:center;padding:40px;color:#aaa;font-size:14px;}
+.s-pill{background:#fef3c7;color:#92400e;font-size:11px;padding:2px 9px;border-radius:10px;}
+.btn-view{background:#fff;border:1px solid #c8930a;color:#c8930a;border-radius:6px;padding:5px 14px;font-size:12px;cursor:pointer;font-weight:600;}
+.btn-view:hover{background:#fdf8ee;}
+.btn-icon{background:#fff;border:1px solid #e0e0e0;color:#555;border-radius:6px;padding:5px 10px;font-size:12px;cursor:pointer;margin-left:4px;}
+.btn-icon:hover{border-color:#c8930a;color:#c8930a;}
 
-/* ── MODAL OVERLAY ── */
-.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:1000;overflow-y:auto;}
-.modal-overlay.active{display:flex;align-items:flex-start;justify-content:center;padding:16px;}
+/* ── SCHEDULE CALL ── */
+.schedule-layout{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+@media(max-width:700px){.schedule-layout{grid-template-columns:1fr;}}
 
-/* ── FUND SELECTOR MODAL ── */
-.fund-modal{background:#fff;border-radius:10px;width:100%;max-width:900px;overflow:hidden;}
-.fund-modal-header{background:#2c3e50;color:#fff;padding:14px 20px;display:flex;justify-content:space-between;align-items:center;}
-.fund-modal-header h3{font-size:15px;font-weight:600;}
-.modal-close{background:none;border:none;color:#aaa;font-size:20px;cursor:pointer;line-height:1;flex-shrink:0;}
+.form-card{background:#fafafa;border:1px solid #f0f0f0;border-radius:10px;padding:20px;}
+.form-card-title{font-size:13.5px;font-weight:700;color:#1a1a1a;margin-bottom:16px;display:flex;align-items:center;gap:8px;}
+.form-card-title span{font-size:16px;}
+.form-group{margin-bottom:14px;}
+.form-group label{font-size:11.5px;font-weight:600;color:#666;display:block;margin-bottom:5px;text-transform:uppercase;letter-spacing:.3px;}
+.form-input,.form-select,.form-textarea{width:100%;padding:9px 12px;border:1px solid #e5e7eb;border-radius:6px;font-size:13px;color:#1a1a1a;background:#fff;outline:none;font-family:inherit;}
+.form-input:focus,.form-select:focus,.form-textarea:focus{border-color:#c8930a;box-shadow:0 0 0 3px rgba(200,147,10,.08);}
+.form-textarea{resize:vertical;min-height:72px;}
+
+.call-type-row{display:flex;gap:10px;flex-wrap:wrap;}
+.call-type-btn{flex:1;min-width:80px;padding:9px 8px;border:1.5px solid #e5e7eb;border-radius:8px;background:#fff;cursor:pointer;text-align:center;font-size:12px;font-weight:600;color:#666;transition:all .15s;display:flex;flex-direction:column;align-items:center;gap:4px;}
+.call-type-btn:hover{border-color:#c8930a;color:#c8930a;}
+.call-type-btn.selected{border-color:#c8930a;background:#fffbf2;color:#c8930a;}
+.call-type-btn .ctype-icon{font-size:20px;}
+
+/* ── PARTICIPANT SWITCHER ── */
+.participant-switcher{display:flex;background:#f0f0f0;border-radius:9px;padding:4px;gap:3px;margin-bottom:16px;}
+.ps-tab{flex:1;padding:8px 6px;border:none;border-radius:6px;background:transparent;cursor:pointer;font-size:12px;font-weight:600;color:#666;display:flex;align-items:center;justify-content:center;gap:5px;transition:all .15s;white-space:nowrap;}
+.ps-tab .ps-icon{font-size:14px;}
+.ps-tab .ps-count{font-size:10px;font-weight:700;padding:1px 6px;border-radius:10px;background:#ccc;color:#fff;min-width:18px;text-align:center;}
+.ps-tab.active{background:#fff;color:#c8930a;box-shadow:0 1px 4px rgba(0,0,0,.10);}
+.ps-tab.active .ps-count{background:#c8930a;}
+
+.participant-panel{display:none;}
+.participant-panel.active{display:block;}
+
+/* participant summary chips */
+.participant-summary{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:14px;}
+.sum-chip{display:inline-flex;align-items:center;gap:5px;padding:4px 10px;border-radius:20px;font-size:11px;font-weight:600;}
+.sum-chip-investor{background:#fef3c7;color:#92400e;}
+.sum-chip-rm{background:#dcfce7;color:#166534;}
+.sum-chip-fh{background:#f3e8ff;color:#6b21a8;}
+
+/* person rows */
+.person-row{display:flex;align-items:center;gap:9px;background:#fff;border:1px solid #f0f0f0;border-radius:8px;padding:8px 12px;margin-bottom:7px;}
+.person-avatar{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;}
+.av-investor{background:#fef3c7;color:#c8930a;}
+.av-rm{background:#dcfce7;color:#166534;}
+.av-team{background:#e0f2fe;color:#0369a1;}
+.av-fh{background:#f3e8ff;color:#6b21a8;}
+.person-info{flex:1;min-width:0;}
+.person-name{font-size:12.5px;font-weight:600;color:#1a1a1a;}
+.person-sub{font-size:11px;color:#888;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.person-badge{font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px;flex-shrink:0;}
+.pb-investor{background:#fef3c7;color:#92400e;}
+.pb-rm{background:#dcfce7;color:#166534;}
+.pb-team{background:#dbeafe;color:#1e40af;}
+.pb-fh{background:#f3e8ff;color:#6b21a8;}
+.pb-guest{background:#f1f5f9;color:#475569;}
+.remove-btn{background:none;border:none;cursor:pointer;color:#ccc;font-size:16px;line-height:1;flex-shrink:0;}
+.remove-btn:hover{color:#ef4444;}
+
+.add-row{display:flex;gap:8px;margin-top:10px;}
+.add-row .form-input{flex:1;}
+.btn-add{background:#c8930a;color:#fff;border:none;border-radius:6px;padding:9px 14px;font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap;flex-shrink:0;}
+.btn-add:hover{background:#a97608;}
+
+/* fund house search */
+.fh-search-wrap{position:relative;margin-bottom:9px;}
+.fh-dropdown{position:absolute;top:calc(100% + 4px);left:0;right:0;background:#fff;border:1px solid #c8930a;border-radius:8px;z-index:20;overflow:hidden;box-shadow:0 4px 16px rgba(0,0,0,.14);}
+.fh-option{padding:9px 12px;cursor:pointer;display:flex;align-items:center;gap:10px;border-bottom:1px solid #f5f5f5;}
+.fh-option:last-child{border-bottom:none;}
+.fh-option:hover{background:#fffdf5;}
+.fh-logo{width:34px;height:24px;background:#f1f5f9;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:9px;color:#888;font-weight:700;flex-shrink:0;}
+.fh-opt-name{font-size:12px;font-weight:600;color:#1a1a1a;}
+.fh-opt-sub{font-size:11px;color:#888;}
+.fh-house-tag{font-size:10px;font-weight:700;background:#f3e8ff;color:#6b21a8;padding:1px 7px;border-radius:8px;margin-left:5px;}
+.fh-divider{font-size:11px;color:#aaa;padding:7px 12px 4px;font-weight:600;text-transform:uppercase;letter-spacing:.4px;background:#fafafa;border-bottom:1px solid #f0f0f0;}
+
+/* call history */
+.call-history{margin-top:24px;}
+.call-hist-title{font-size:14px;font-weight:700;margin-bottom:14px;}
+.call-card{border:1px solid #f0f0f0;border-radius:8px;padding:14px 16px;margin-bottom:10px;background:#fafafa;display:flex;gap:14px;align-items:flex-start;flex-wrap:wrap;}
+.call-card-icon{width:38px;height:38px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+.call-card-icon.google{background:#e8f4fd;}
+.call-card-icon.zoom{background:#e8f0fe;}
+.call-card-icon.phone{background:#f0fdf4;}
+.call-card-body{flex:1;min-width:0;}
+.call-card-top{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:4px;}
+.call-card-type{font-size:13px;font-weight:700;color:#1a1a1a;}
+.call-card-date{font-size:12px;color:#888;}
+.call-status{font-size:10px;font-weight:700;padding:2px 9px;border-radius:10px;}
+.status-scheduled{background:#dbeafe;color:#1d4ed8;}
+.status-completed{background:#dcfce7;color:#15803d;}
+.call-card-desc{font-size:12.5px;color:#555;margin-bottom:5px;}
+.call-card-participants{font-size:11px;color:#aaa;}
+
+/* ── NOTES ── */
+.note-composer{background:#fffbf2;border:1px solid #fde68a;border-radius:10px;padding:18px 20px;margin-bottom:22px;}
+.note-composer-title{font-size:13.5px;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+.note-composer-title span{font-size:16px;}
+.note-textarea{width:100%;padding:10px 12px;border:1px solid #e5e7eb;border-radius:6px;font-size:13px;color:#1a1a1a;background:#fff;outline:none;resize:vertical;min-height:90px;font-family:inherit;}
+.note-textarea:focus{border-color:#c8930a;box-shadow:0 0 0 3px rgba(200,147,10,.08);}
+.note-composer-footer{display:flex;justify-content:space-between;align-items:center;margin-top:10px;flex-wrap:wrap;gap:8px;}
+.note-meta-info{font-size:11px;color:#aaa;}
+.btn-save-note{background:#c8930a;color:#fff;border:none;border-radius:6px;padding:8px 20px;font-size:13px;font-weight:600;cursor:pointer;}
+.btn-save-note:hover{background:#a97608;}
+.notes-list{display:flex;flex-direction:column;gap:12px;}
+.note-card{border:1px solid #f0f0f0;border-radius:10px;padding:16px 18px;background:#fff;position:relative;}
+.note-card-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;flex-wrap:wrap;gap:6px;}
+.note-card-author{display:flex;align-items:center;gap:8px;}
+.note-author-avatar{width:28px;height:28px;border-radius:50%;background:#fef3c7;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#c8930a;flex-shrink:0;}
+.note-author-name{font-size:12.5px;font-weight:700;color:#1a1a1a;}
+.note-author-email{font-size:11px;color:#888;}
+.note-timestamp{font-size:11px;color:#bbb;white-space:nowrap;}
+.note-body{font-size:13px;color:#444;line-height:1.6;}
+.note-footer{display:flex;justify-content:flex-end;gap:6px;margin-top:10px;}
+.btn-note-action{background:none;border:1px solid #e5e7eb;color:#888;border-radius:5px;padding:4px 10px;font-size:11px;cursor:pointer;}
+.btn-note-action:hover{border-color:#c8930a;color:#c8930a;}
+.note-card.editing .note-body{display:none;}
+.note-edit-area{display:none;width:100%;padding:8px 10px;border:1px solid #c8930a;border-radius:6px;font-size:13px;resize:vertical;min-height:70px;font-family:inherit;outline:none;}
+.note-card.editing .note-edit-area{display:block;}
+
+/* ── MODALS ── */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:1000;overflow-y:auto;}
+.modal-overlay.active{display:flex;align-items:flex-start;justify-content:center;padding:20px;}
+.modal-box{background:#fff;border-radius:10px;width:100%;max-width:920px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.2);}
+.modal-header{background:#2c3e50;color:#fff;padding:14px 20px;display:flex;justify-content:space-between;align-items:center;}
+.modal-header h3{font-size:15px;font-weight:600;}
+.modal-close{background:none;border:none;color:#aaa;font-size:20px;cursor:pointer;line-height:1;}
 .modal-close:hover{color:#fff;}
+.modal-sm{max-width:580px;}
 
-/* Cart bar */
-.cart-bar{background:#eff6ff;border-bottom:1px solid #bfdbfe;padding:10px 16px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
-.cart-bar-label{font-size:12px;font-weight:700;color:#1d4ed8;flex-shrink:0;}
-.cart-pill{background:#dbeafe;color:#1e40af;font-size:11px;padding:3px 10px;border-radius:12px;display:flex;align-items:center;gap:5px;}
-.cart-pill .remove{cursor:pointer;font-size:13px;color:#6b7280;}
+.cart-bar{background:#fffbf2;border-bottom:1px solid #fde68a;padding:10px 18px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.cart-bar-label{font-size:12px;font-weight:700;color:#92400e;flex-shrink:0;}
+.cart-pill{background:#fef3c7;color:#92400e;font-size:11px;padding:3px 10px;border-radius:12px;display:flex;align-items:center;gap:5px;}
+.cart-pill .remove{cursor:pointer;color:#6b7280;}
 .cart-pill .remove:hover{color:#ef4444;}
-.cart-bar-empty{font-size:12px;color:#93c5fd;}
+.cart-bar-empty{font-size:12px;color:#d97706;}
 
-/* Product tabs */
-.product-tabs{display:flex;gap:0;border-bottom:2px solid #e5e7eb;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
+.product-tabs{display:flex;border-bottom:2px solid #f0f0f0;overflow-x:auto;scrollbar-width:none;}
 .product-tabs::-webkit-scrollbar{display:none;}
-.prod-tab{padding:11px 14px;font-size:12px;font-weight:700;color:#666;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px;white-space:nowrap;flex-shrink:0;}
+.prod-tab{padding:11px 15px;font-size:12px;font-weight:700;color:#777;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px;white-space:nowrap;flex-shrink:0;}
 .prod-tab:hover{color:#1a1a1a;}
 .prod-tab.active{color:#7c2d12;border-bottom:2px solid #7c2d12;}
+/* MF and SIF get a teal/green accent to distinguish from other product tabs */
+.prod-tab.mf-tab{color:#0f766e;}
+.prod-tab.mf-tab.active{color:#0f766e;border-bottom-color:#0f766e;}
+.prod-tab.sif-tab{color:#6d28d9;}
+.prod-tab.sif-tab.active{color:#6d28d9;border-bottom-color:#6d28d9;}
+/* SIF badge — new product label */
+.scheme-tag.sif{background:#ede9fe;color:#5b21b6;}
+.scheme-tag.mf{background:#ecfdf5;color:#065f46;}
 
-/* Search bar */
-.search-wrap{padding:10px 16px;border-bottom:0.5px solid #e5e7eb;background:#fafafa;}
+.search-wrap{padding:10px 18px;background:#fafafa;border-bottom:1px solid #f0f0f0;}
 .search-inner{position:relative;}
-.search-icon{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:#9ca3af;font-size:15px;pointer-events:none;}
-.search-input{width:100%;padding:9px 12px 9px 34px;border:1px solid #e0e0e0;border-radius:6px;font-size:13px;color:#1a1a1a;background:#fff;outline:none;}
-.search-input:focus{border-color:#3b82f6;}
+.search-icon-inner{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:#bbb;pointer-events:none;}
+.search-input{width:100%;padding:9px 12px 9px 34px;border:1px solid #e5e7eb;border-radius:6px;font-size:13px;outline:none;background:#fff;}
+.search-input:focus{border-color:#c8930a;}
 
-/* Scheme list */
-.scheme-list{padding:12px 16px;max-height:380px;overflow-y:auto;-webkit-overflow-scrolling:touch;}
-.scheme-card{border:0.5px solid #e5e7eb;border-radius:8px;padding:12px 14px;margin-bottom:10px;display:flex;align-items:center;gap:12px;transition:border-color .15s,background .15s;flex-wrap:wrap;}
-.scheme-card:hover{border-color:#93c5fd;background:#f8fbff;}
-.scheme-card.selected{border-color:#3b82f6;background:#eff6ff;}
-.scheme-logo-placeholder{width:52px;height:36px;background:#f1f5f9;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:10px;color:#888;flex-shrink:0;text-align:center;}
+.scheme-list-wrap{padding:12px 18px;max-height:360px;overflow-y:auto;}
+.scheme-card{border:1px solid #f0f0f0;border-radius:8px;padding:12px 14px;margin-bottom:8px;display:flex;align-items:center;gap:12px;transition:border-color .15s,background .15s;flex-wrap:wrap;}
+.scheme-card:hover{border-color:#fcd34d;background:#fffdf5;}
+.scheme-card.selected{border-color:#c8930a;background:#fffbf2;}
+.scheme-logo{width:48px;height:32px;background:#f1f5f9;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:10px;color:#888;flex-shrink:0;font-weight:700;}
 .scheme-info{flex:1;min-width:140px;}
-.scheme-name{font-size:13px;font-weight:700;color:#1a1a1a;margin-bottom:4px;}
-.scheme-tag{display:inline-block;background:#fef3c7;color:#92400e;font-size:10px;padding:2px 7px;border-radius:10px;margin-bottom:3px;margin-right:3px;}
+.scheme-name{font-size:13px;font-weight:700;color:#1a1a1a;margin-bottom:3px;}
+.scheme-tag{display:inline-block;background:#fef3c7;color:#92400e;font-size:10px;padding:2px 7px;border-radius:10px;margin-right:3px;margin-bottom:3px;}
 .scheme-tag.equity{background:#e0f2fe;color:#075985;}
 .scheme-tag.multicap{background:#f0fdf4;color:#166534;}
 .scheme-tag.multiasset{background:#fdf4ff;color:#7e22ce;}
 .scheme-tag.smallcap{background:#fff7ed;color:#c2410c;}
-.scheme-meta{font-size:11px;color:#888;}
-.scheme-returns{display:flex;gap:12px;flex-shrink:0;}
-.return-col{text-align:center;min-width:38px;}
+.scheme-meta{font-size:11px;color:#aaa;}
+.scheme-returns{display:flex;gap:10px;flex-shrink:0;}
+.return-col{text-align:center;min-width:34px;}
 .return-val{font-size:12px;font-weight:700;color:#059669;}
-.return-val.na{color:#9ca3af;}
-.return-label{font-size:10px;color:#888;margin-top:2px;}
-.add-btn{width:32px;height:32px;border-radius:50%;border:1.5px solid #d1d5db;background:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px;color:#6b7280;transition:all .15s;}
-.add-btn:hover{border-color:#3b82f6;color:#3b82f6;}
-.scheme-card.selected .add-btn{background:#3b82f6;border-color:#3b82f6;color:#fff;}
+.return-val.na{color:#ccc;}
+.return-label{font-size:10px;color:#aaa;margin-top:1px;}
+.add-btn{width:30px;height:30px;border-radius:50%;border:1.5px solid #d1d5db;background:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:16px;color:#aaa;transition:all .15s;flex-shrink:0;}
+.add-btn:hover{border-color:#c8930a;color:#c8930a;}
+.scheme-card.selected .add-btn{background:#c8930a;border-color:#c8930a;color:#fff;}
 
-/* Trigger bar */
-.trigger-bar{padding:12px 16px;border-top:1px solid #e5e7eb;display:flex;justify-content:space-between;align-items:center;background:#fafafa;flex-wrap:wrap;gap:8px;}
-.selected-count{font-size:13px;color:#555;}
+.trigger-bar{padding:12px 18px;border-top:1px solid #f0f0f0;display:flex;justify-content:space-between;align-items:center;background:#fafafa;gap:10px;flex-wrap:wrap;}
+.selected-count{font-size:13px;color:#666;}
 .selected-count strong{color:#1a1a1a;}
-.btn-trigger{background:#10b981;color:#fff;border:none;border-radius:6px;padding:9px 18px;font-size:13px;font-weight:700;cursor:pointer;}
-.btn-trigger:hover{background:#059669;}
+.btn-trigger{background:#c8930a;color:#fff;border:none;border-radius:6px;padding:9px 20px;font-size:13px;font-weight:700;cursor:pointer;}
+.btn-trigger:hover{background:#a97608;}
 .btn-trigger:disabled{background:#d1d5db;cursor:not-allowed;}
 
-/* ── VIEW POPUP ── */
-.view-modal{background:#fff;border-radius:10px;width:100%;max-width:600px;overflow:hidden;}
-.view-modal-header{background:#2c3e50;color:#fff;padding:13px 16px;display:flex;justify-content:space-between;align-items:center;}
-.view-modal-header h3{font-size:14px;font-weight:600;}
-.view-modal-body{padding:16px;max-height:80vh;overflow-y:auto;}
+.view-body-pad{padding:18px;max-height:80vh;overflow-y:auto;}
 .view-date-info{font-size:12px;color:#888;margin-bottom:14px;}
-.view-product-group{margin-bottom:16px;}
-.view-product-title{font-size:13px;font-weight:700;color:#1d4ed8;border-left:3px solid #3b82f6;padding-left:8px;margin-bottom:8px;}
-.view-scheme-row{display:flex;align-items:center;gap:10px;padding:7px 10px;border-radius:6px;background:#f8f9fa;margin-bottom:5px;font-size:12px;color:#1a1a1a;flex-wrap:wrap;}
-.view-scheme-dot{width:7px;height:7px;border-radius:50%;background:#3b82f6;flex-shrink:0;}
+.view-product-group{margin-bottom:14px;}
+.view-product-title{font-size:13px;font-weight:700;color:#92400e;border-left:3px solid #c8930a;padding-left:8px;margin-bottom:8px;}
+.view-scheme-row{display:flex;align-items:center;gap:10px;padding:7px 10px;border-radius:6px;background:#f9f9f9;margin-bottom:4px;font-size:12px;}
+.view-dot{width:6px;height:6px;border-radius:50%;background:#c8930a;flex-shrink:0;}
 
-/* ══════════════════════════════
-   MOBILE RESPONSIVE — FIXED
-══════════════════════════════ */
-@media (max-width: 768px) {
-
-  /* Action bar — scrollable row, no wrap so nothing gets cut */
-  .action-bar{
-    padding:8px 12px;
-    gap:6px;
-    overflow-x:auto;
-    flex-wrap:nowrap;
-    -webkit-overflow-scrolling:touch;
-    scrollbar-width:none;
-  }
-  .action-bar::-webkit-scrollbar{display:none;}
-  .btn-action{padding:6px 12px;font-size:11px;flex-shrink:0;}
-
-  /* Main layout: full-width stack */
-  .main{flex-direction:column;padding:12px;gap:12px;}
-
-  /* LEFT PANEL: clean card at top */
-  .left-panel{
-    width:100%;
-    background:#fff;
-    border-radius:10px;
-    padding:14px;
-    border:0.5px solid #e0e0e0;
-    display:grid;
-    grid-template-columns:auto 1fr;
-    grid-template-rows:auto auto auto;
-    gap:12px 16px;
-    align-items:start;
-  }
-
-  /* Avatar + name block spans left column */
-  .left-panel > div:nth-child(1){
-    grid-column:1;
-    grid-row:1;
-  }
-  /* RM block */
-  .left-panel > div:nth-child(2){
-    grid-column:2;
-    grid-row:1;
-  }
-  /* Notify row */
-  .left-panel > div:nth-child(3){
-    grid-column:1;
-    grid-row:2;
-  }
-  /* Dates block */
-  .left-panel > div:nth-child(4){
-    grid-column:2;
-    grid-row:2;
-  }
-
-  .left-panel .avatar{margin-bottom:4px;width:44px;height:44px;font-size:18px;}
-  .left-panel .lead-name{font-size:14px;}
-  .rm-label,.gen-label{margin-top:0;}
-  .notify-row{margin-top:0;}
-
-  /* Center panel */
-  .center-panel{padding:0;width:100%;}
-
-  /* Section title */
-  .section-title{font-size:14px;margin-bottom:12px;}
-
-  /* Detail rows: label on top, value below — clean and readable */
-  .detail-row{
-    flex-direction:column;
-    gap:2px;
-    margin-bottom:10px;
-    background:#fff;
-    border-radius:6px;
-    padding:8px 10px;
-    border:0.5px solid #e8eaed;
-  }
-  .detail-label{
-    min-width:unset;
-    width:100%;
-    font-size:11px;
-    color:#888;
-    font-weight:600;
-    text-transform:uppercase;
-    letter-spacing:0.3px;
-  }
-  .detail-value{
-    font-size:13px;
-    color:#1a1a1a;
-    font-weight:500;
-    display:flex;
-    align-items:center;
-    flex-wrap:wrap;
-    gap:4px;
-  }
-
-  /* Scheme cards on mobile */
-  .scheme-card{flex-wrap:wrap;gap:10px;}
-  .scheme-returns{width:100%;justify-content:space-around;border-top:0.5px solid #f0f0f0;padding-top:8px;margin-top:4px;}
-  .add-btn{margin-left:auto;}
-
-  /* Fund modal: bottom sheet */
+@media(max-width:768px){
+  .page-content{padding:14px;}
+  .detail-body{padding:16px 14px;}
+  .info-grid{grid-template-columns:1fr 1fr;}
+  .personal-grid{grid-template-columns:1fr 1fr;}
   .modal-overlay.active{padding:0;align-items:flex-end;}
-  .fund-modal{
-    border-radius:14px 14px 0 0;
-    max-height:92vh;
-    display:flex;
-    flex-direction:column;
-  }
-  .scheme-list{flex:1;max-height:none;}
-
-  /* View modal: bottom sheet */
-  .modal-overlay.active .view-modal{
-    border-radius:14px 14px 0 0;
-    max-height:90vh;
-  }
-  .view-scheme-row{flex-direction:column;align-items:flex-start;gap:4px;}
-
-  /* Trigger button full width */
-  .trigger-bar{flex-direction:column;align-items:stretch;}
-  .btn-trigger{text-align:center;}
-
-  /* Suggest header */
-  .suggest-header{flex-direction:column;align-items:flex-start;}
-  .btn-suggest-new{width:100%;text-align:center;}
+  .modal-box{border-radius:14px 14px 0 0;max-height:92vh;}
+  .trigger-bar,.note-composer-footer{flex-direction:column;align-items:stretch;}
+  .btn-trigger,.btn-save-note{text-align:center;}
 }
-
-@media (max-width: 480px) {
-  .topbar{font-size:14px;padding:10px 14px;}
-  .tab{padding:10px 10px;font-size:12px;}
-  .fund-modal-header h3{font-size:13px;}
-  .scheme-name{font-size:12px;}
-  .return-val{font-size:11px;}
-  .main{padding:10px;}
+@media(max-width:480px){
+  .info-grid{grid-template-columns:1fr;}
+  .personal-grid{grid-template-columns:1fr;}
+  .detail-tabs{padding:0 10px;}
+  .dtab{margin-right:14px;font-size:12px;}
 }
 </style>
 </head>
 <body>
 
-<!-- TOP BAR -->
-<div class="topbar">
-  Lead Details
-  <span class="close-x">✕</span>
+<!-- TOP NAV -->
+<div class="topnav">
+  <div class="topnav-left">
+    <button class="menu-btn">☰</button>
+    <span class="page-title">Investor Detail</span>
+  </div>
+  <div class="topnav-right">
+    <button class="theme-btn">🌙</button>
+    <div class="user-btn">
+      <div class="user-avatar">SK</div>
+      <span class="user-name">Saikumar</span>
+      <span style="font-size:11px;color:#aaa;">▾</span>
+    </div>
+  </div>
 </div>
 
-<!-- TABS -->
-<div class="tabs">
-  <div class="tab active" onclick="switchTab('profile',this)">Profile</div>
-  <div class="tab" onclick="switchTab('callhistory',this)">Call History</div>
-  <div class="tab" onclick="switchTab('notes',this)">Notes / Tasks</div>
-  <div class="tab" onclick="switchTab('meetings',this)">Meetings</div>
-  <div class="tab" onclick="switchTab('activities',this)">User Activities</div>
-  <div class="tab" onclick="switchTab('wishlist',this)">User Wish List</div>
-  <div class="tab" onclick="switchTab('suggested',this)">Suggested Funds</div>
-</div>
+<div class="page-content">
 
-<!-- MAIN CONTENT -->
-<div class="main">
-
-  <!-- LEFT PANEL -->
-  <div class="left-panel">
-    <div>
-      <div class="avatar">👤</div>
-      <div class="lead-name">Saikumar</div>
-      <span class="badge-new">New Lead</span>
-    </div>
-    <div>
-      <div class="rm-label">Attending RM</div>
-      <div class="rm-name">Aamir Firfire</div>
-    </div>
-    <div>
-      <div class="notify-row">Notify User Activity</div>
-      <div><span class="toggle"></span></div>
-    </div>
-    <div>
-      <div class="gen-label">Lead Generated on</div>
-      <div class="gen-value">23-05-2026 14:44:16</div>
-      <div class="gen-label" style="margin-top:8px;">Last Update on</div>
-      <div class="gen-value">23-05-2026 14:44:16</div>
+  <!-- Accounts -->
+  <div class="accounts-card">
+    <div class="accounts-title">Investment Accounts (1)</div>
+    <div class="account-item">
+      <div class="account-header">
+        <div class="account-label">
+          <span style="color:#c8930a;font-size:14px;">👤</span>
+          <span class="account-type">Single Account</span>
+          <span class="account-count">(2 investment's)</span>
+        </div>
+        <span class="account-check">✓</span>
+      </div>
+      <div class="account-holders">holders: ANFPG3395Q</div>
     </div>
   </div>
 
-  <!-- CENTER PANEL -->
-  <div class="center-panel">
+  <!-- Detail card -->
+  <div class="detail-card">
 
-    <!-- PROFILE TAB -->
-    <div id="tab-profile">
-      <div class="section-title">Lead Details:</div>
-      <div class="detail-row"><span class="detail-label">Lead Generated from</span><span class="detail-value">Website_Registration</span></div>
-      <div class="detail-row"><span class="detail-label">Lead Category</span><span class="detail-value">Investor</span></div>
-      <div class="detail-row"><span class="detail-label">Distributor</span><span class="detail-value">PMS Bazaar</span></div>
-      <div class="detail-row"><span class="detail-label">Lead Reference ID</span><span class="detail-value link">✏️</span></div>
-      <div class="detail-row"><span class="detail-label">Lead Type</span><span class="detail-value">VISITOR</span></div>
-      <div class="detail-row"><span class="detail-label">Contact No</span><span class="detail-value">+919930042225 <button class="btn-call">Call</button></span></div>
-      <div class="detail-row"><span class="detail-label">Email</span><span class="detail-value">saikumar.thota@pmsbazaar.com</span></div>
-      <div class="detail-row"><span class="detail-label">Pincode</span><span class="detail-value">524318</span></div>
-      <div class="detail-row"><span class="detail-label">City</span><span class="detail-value">Nellore</span></div>
-      <div class="detail-row"><span class="detail-label">State</span><span class="detail-value">Andhra Pradesh</span></div>
-      <div class="detail-row"><span class="detail-label">Country</span><span class="detail-value">India</span></div>
+    <!-- TABS -->
+    <div class="detail-tabs">
+      <div class="dtab active" onclick="switchTab('info',this)">Info</div>
+      <div class="dtab" onclick="switchTab('family',this)">Family Mapping</div>
+      <div class="dtab" onclick="switchTab('investments',this)">Investments <span class="dtab-badge">2</span></div>
+      <div class="dtab" onclick="switchTab('transactions',this)">Transactions <span class="dtab-badge">0</span></div>
+      <div class="dtab" onclick="switchTab('valuations',this)">Valuations <span class="dtab-badge">4</span></div>
+      <div class="dtab" onclick="switchTab('suggested',this)">Suggested Funds <span class="dtab-badge" id="sf-badge">0</span></div>
+      <div class="dtab" onclick="switchTab('schedule',this)">Schedule Call <span class="dtab-badge" id="sc-badge">0</span></div>
+      <div class="dtab" onclick="switchTab('notes',this)">Notes <span class="dtab-badge" id="notes-badge">0</span></div>
     </div>
 
-    <!-- PLACEHOLDER TABS -->
-    <div id="tab-callhistory" style="display:none;"><div class="no-records">No call history found.</div></div>
-    <div id="tab-notes" style="display:none;"><div class="no-records">No notes or tasks found.</div></div>
-    <div id="tab-meetings" style="display:none;"><div class="no-records">No meetings scheduled.</div></div>
-    <div id="tab-activities" style="display:none;"><div class="no-records">No user activities found.</div></div>
-    <div id="tab-wishlist" style="display:none;"><div class="no-records">No wish list items.</div></div>
-
-    <!-- SUGGESTED FUNDS TAB -->
-    <div id="tab-suggested" style="display:none;">
-      <div class="suggest-header">
-        <div class="section-title" style="margin:0;">Suggested Funds</div>
-        <button class="btn-suggest-new" onclick="openFundModal()">+ Suggest Funds</button>
+    <!-- ══ INFO TAB ══ -->
+    <div class="detail-body" id="tab-info">
+      <div class="investor-name">GARIMA GUPTA</div>
+      <div class="investor-code">MyAlt Code: MYALT1737</div>
+      <div class="status-badges">
+        <span class="badge-active">Active</span>
+        <span class="badge-resident">Resident</span>
       </div>
-      <div id="history-empty" class="no-records">No suggested funds yet. Click "+ Suggest Funds" to get started.</div>
+      <div class="info-grid">
+        <div class="info-field"><label>Email</label><div class="val">GARIMAGUPTA89@GMAIL.COM</div></div>
+        <div class="info-field"><label>Mobile</label><div class="val">9870223157</div></div>
+        <div class="info-field"><label>PAN</label><div class="val">ANFPG3395Q</div></div>
+        <div class="info-field"><label>Inception Date</label><div class="val">2026-05-18</div></div>
+      </div>
+      <div class="section-header">Personal Information</div>
+      <div class="personal-grid">
+        <div class="personal-field"><label>Full Name</label><div class="val">GARIMA GUPTA</div></div>
+        <div class="personal-field"><label>Date of Birth</label><div class="val">–</div></div>
+        <div class="personal-field"><label>Gender</label><div class="val">–</div></div>
+        <div class="personal-field"><label>Address Line 1</label><div class="val">–</div></div>
+        <div class="personal-field"><label>Address Line 2</label><div class="val">–</div></div>
+        <div class="personal-field"><label>City</label><div class="val">–</div></div>
+        <div class="personal-field"><label>State</label><div class="val">–</div></div>
+        <div class="personal-field"><label>Country</label><div class="val">–</div></div>
+        <div class="personal-field"><label>Pincode</label><div class="val">–</div></div>
+      </div>
+    </div>
+
+    <!-- placeholders -->
+    <div class="detail-body" id="tab-family" style="display:none;"><div class="no-records">No family mapping found.</div></div>
+    <div class="detail-body" id="tab-investments" style="display:none;"><div class="no-records">No investments found.</div></div>
+    <div class="detail-body" id="tab-transactions" style="display:none;"><div class="no-records">No transactions found.</div></div>
+    <div class="detail-body" id="tab-valuations" style="display:none;"><div class="no-records">No valuations found.</div></div>
+
+    <!-- ══ SUGGESTED FUNDS TAB ══ -->
+    <div class="detail-body" id="tab-suggested" style="display:none;">
+      <div class="tab-action-header">
+        <div class="tab-section-title">Suggested Funds</div>
+        <button class="btn-primary" onclick="openFundModal()">＋ Suggest Funds</button>
+      </div>
+      <div id="sf-empty" class="no-records">No suggested funds yet. Click "+ Suggest Funds" to get started.</div>
       <div class="table-wrap">
-        <table class="history-table" id="history-table" style="display:none;">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Date &amp; Time</th>
-              <th>Schemes Suggested</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody id="history-tbody"></tbody>
+        <table class="data-table" id="sf-table" style="display:none;">
+          <thead><tr><th>#</th><th>Date &amp; Time</th><th>Schemes Suggested</th><th>Action</th></tr></thead>
+          <tbody id="sf-tbody"></tbody>
         </table>
       </div>
     </div>
 
-  </div><!-- /center-panel -->
-</div><!-- /main -->
+    <!-- ══ SCHEDULE CALL TAB ══ -->
+    <div class="detail-body" id="tab-schedule" style="display:none;">
+      <div class="tab-action-header">
+        <div class="tab-section-title">Schedule a Call</div>
+      </div>
 
-<!-- ════════════════════════
-     FUND SELECTOR MODAL
-════════════════════════ -->
+      <div class="schedule-layout">
+
+        <!-- LEFT: Call details form -->
+        <div>
+          <div class="form-card">
+            <div class="form-card-title"><span>📅</span> Call Details</div>
+
+            <div class="form-group">
+              <label>Call Type</label>
+              <div class="call-type-row">
+                <button class="call-type-btn selected" onclick="selectCallType('google',this)"><div class="ctype-icon">🎥</div>Google Meet</button>
+                <button class="call-type-btn" onclick="selectCallType('zoom',this)"><div class="ctype-icon">💻</div>Zoom</button>
+                <button class="call-type-btn" onclick="selectCallType('phone',this)"><div class="ctype-icon">📞</div>Phone Call</button>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Date</label>
+              <input type="date" class="form-input" id="call-date"/>
+            </div>
+            <div class="form-group">
+              <label>Time</label>
+              <input type="time" class="form-input" id="call-time"/>
+            </div>
+            <div class="form-group">
+              <label>Duration</label>
+              <select class="form-select" id="call-duration">
+                <option>15 minutes</option>
+                <option selected>30 minutes</option>
+                <option>45 minutes</option>
+                <option>1 hour</option>
+                <option>1.5 hours</option>
+                <option>2 hours</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Agenda / Notes</label>
+              <textarea class="form-textarea" id="call-agenda" placeholder="What is this call about?"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT: Participants (3-tab switcher) -->
+        <div>
+          <div class="form-card">
+            <div class="form-card-title"><span>👥</span> Participants</div>
+
+            <!-- Switcher -->
+            <div class="participant-switcher">
+              <button class="ps-tab active" id="ps-tab-investor" onclick="switchPS('investor')">
+                <span class="ps-icon">👤</span>
+                Investor
+                <span class="ps-count" id="cnt-investor">1</span>
+              </button>
+              <button class="ps-tab" id="ps-tab-rm" onclick="switchPS('rm')">
+                <span class="ps-icon">💼</span>
+                RM / Team
+                <span class="ps-count" id="cnt-rm">1</span>
+              </button>
+              <button class="ps-tab" id="ps-tab-fh" onclick="switchPS('fh')">
+                <span class="ps-icon">🏦</span>
+                Fund House
+                <span class="ps-count" id="cnt-fh">0</span>
+              </button>
+            </div>
+
+            <!-- Summary chips -->
+            <div class="participant-summary" id="participant-summary"></div>
+
+            <!-- Panel: Investor -->
+            <div class="participant-panel active" id="panel-investor">
+              <div id="investor-list"></div>
+              <div class="add-row">
+                <input type="email" class="form-input" id="investor-input" placeholder="Add investor email..." onkeydown="if(event.key==='Enter')addPerson('investor')"/>
+                <button class="btn-add" onclick="addPerson('investor')">+ Add</button>
+              </div>
+            </div>
+
+            <!-- Panel: RM / Team -->
+            <div class="participant-panel" id="panel-rm">
+              <div id="rm-list"></div>
+              <div class="add-row">
+                <input type="email" class="form-input" id="rm-input" placeholder="Add team member email..." onkeydown="if(event.key==='Enter')addPerson('rm')"/>
+                <button class="btn-add" onclick="addPerson('rm')">+ Add</button>
+              </div>
+            </div>
+
+            <!-- Panel: Fund House -->
+            <div class="participant-panel" id="panel-fh">
+              <div id="fh-list"></div>
+
+              <!-- search from directory -->
+              <div class="fh-search-wrap" style="margin-top:4px;">
+                <input type="text" class="form-input" id="fh-search" placeholder="Search fund house or contact name..." oninput="onFHSearch()" onfocus="onFHSearch()" autocomplete="off"/>
+                <div class="fh-dropdown" id="fh-dropdown" style="display:none;"></div>
+              </div>
+
+              <!-- manual fallback -->
+              <div class="add-row" style="margin-top:8px;">
+                <input type="email" class="form-input" id="fh-manual-input" placeholder="Or add email manually..." onkeydown="if(event.key==='Enter')addFHManual()"/>
+                <button class="btn-add" onclick="addFHManual()">+ Add</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Schedule button -->
+      <div style="display:flex;justify-content:flex-end;margin-top:14px;">
+        <button class="btn-primary" onclick="scheduleCall()" style="padding:10px 28px;font-size:14px;">📅 Schedule Call</button>
+      </div>
+
+      <!-- Call history -->
+      <div class="call-history" id="call-history-section" style="display:none;">
+        <div class="call-hist-title">Scheduled Calls</div>
+        <div id="call-history-list"></div>
+      </div>
+    </div>
+
+    <!-- ══ NOTES TAB ══ -->
+    <div class="detail-body" id="tab-notes" style="display:none;">
+      <div class="note-composer">
+        <div class="note-composer-title"><span>📝</span> Add a Note</div>
+        <textarea class="note-textarea" id="note-input" placeholder="Write your discussion notes here... What was discussed, decisions made, action items, follow-ups..."></textarea>
+        <div class="note-composer-footer">
+          <div class="note-meta-info">By: <strong>Saikumar</strong> &nbsp;|&nbsp; saikumar.thota@pmsbazaar.com &nbsp;|&nbsp; <span id="note-live-time"></span></div>
+          <button class="btn-save-note" onclick="saveNote()">Save Note</button>
+        </div>
+      </div>
+      <div id="notes-empty" class="no-records">No notes yet. Start adding discussion notes above.</div>
+      <div class="notes-list" id="notes-list"></div>
+    </div>
+
+  </div><!-- /detail-card -->
+</div><!-- /page-content -->
+
+<!-- ════ FUND SELECTOR MODAL ════ -->
 <div class="modal-overlay" id="fund-overlay">
-<div class="fund-modal">
-
-  <div class="fund-modal-header">
+<div class="modal-box">
+  <div class="modal-header">
     <h3>Suggest Funds — Select Schemes</h3>
     <button class="modal-close" onclick="closeFundModal()">✕</button>
   </div>
-
-  <!-- Cart bar -->
-  <div class="cart-bar" id="cart-bar">
+  <div class="cart-bar">
     <span class="cart-bar-label">Selected:</span>
     <span class="cart-bar-empty" id="cart-empty-msg">No schemes selected yet.</span>
     <div id="cart-pills" style="display:flex;gap:6px;flex-wrap:wrap;"></div>
   </div>
-
-  <!-- Product tabs -->
   <div class="product-tabs">
     <div class="prod-tab active" onclick="switchProd('pms',this)">PMS</div>
     <div class="prod-tab" onclick="switchProd('aif1',this)">AIF (CAT I)</div>
@@ -396,45 +551,73 @@ body{background:#f0f2f5;min-height:100vh;}
     <div class="prod-tab" onclick="switchProd('gift1',this)">GIFT (CAT I)</div>
     <div class="prod-tab" onclick="switchProd('gift2',this)">GIFT (CAT II)</div>
     <div class="prod-tab" onclick="switchProd('gift3',this)">GIFT (CAT III)</div>
+    <div class="prod-tab mf-tab" onclick="switchProd('mf',this)">MF</div>
+    <div class="prod-tab sif-tab" onclick="switchProd('sif',this)">SIF</div>
   </div>
-
-  <!-- Search -->
   <div class="search-wrap">
     <div class="search-inner">
-      <span class="search-icon">🔍</span>
-      <input type="text" id="scheme-search" class="search-input" placeholder="Search schemes by name, tag or strategy..." oninput="renderSchemes()"/>
+      <span class="search-icon-inner">🔍</span>
+      <input type="text" id="scheme-search" class="search-input" placeholder="Search by name, tag or strategy..." oninput="renderSchemes()"/>
     </div>
   </div>
-
-  <!-- Scheme list -->
-  <div class="scheme-list" id="scheme-list"></div>
-
-  <!-- Trigger bar -->
+  <div class="scheme-list-wrap" id="scheme-list"></div>
   <div class="trigger-bar">
     <span class="selected-count">Selected: <strong id="sel-count">0</strong> scheme(s)</span>
-    <button class="btn-trigger" id="trigger-btn" onclick="triggerSuggestion()" disabled>Trigger Suggestion to Saikumar</button>
+    <button class="btn-trigger" id="trigger-btn" onclick="triggerSuggestion()" disabled>Trigger Suggestion to Garima Gupta</button>
   </div>
-
 </div>
 </div>
 
-<!-- ════════════════════════
-     VIEW POPUP MODAL
-════════════════════════ -->
+<!-- ════ VIEW MODAL ════ -->
 <div class="modal-overlay" id="view-overlay">
-<div class="view-modal">
-  <div class="view-modal-header">
+<div class="modal-box modal-sm">
+  <div class="modal-header">
     <h3>Suggested Funds — Details</h3>
     <button class="modal-close" onclick="document.getElementById('view-overlay').classList.remove('active')">✕</button>
   </div>
-  <div class="view-modal-body" id="view-modal-body"></div>
+  <div class="view-body-pad" id="view-body"></div>
 </div>
 </div>
 
 <script>
-const schemeData = {
+/* ══════════════════════════════════════
+   FUND HOUSE DIRECTORY
+══════════════════════════════════════ */
+const FH_DIRECTORY = [
+  {logo:'MO', house:'Motilal Oswal AMC', contacts:[
+    {name:'Rahul Sharma',   email:'rahul.sharma@motilaloswal.com',  role:'Regional Head'},
+    {name:'Priya Mehta',    email:'priya.mehta@motilaloswal.com',   role:'Relationship Manager'}
+  ]},
+  {logo:'JM', house:'JM Financial', contacts:[
+    {name:'Ankit Verma',    email:'ankit.verma@jmfinancial.in',     role:'Sales Head'},
+    {name:'Sneha Joshi',    email:'sneha.joshi@jmfinancial.in',     role:'RM'}
+  ]},
+  {logo:'DZ', house:'Dezerv Investments', contacts:[
+    {name:'Karan Malhotra', email:'karan@dezerv.in',                role:'Investor Relations'}
+  ]},
+  {logo:'SA', house:'Sundaram Alternate Assets', contacts:[
+    {name:'Vikram Nair',    email:'vikram.nair@sundaramamc.com',    role:'Regional Manager'}
+  ]},
+  {logo:'EW', house:'Edelweiss AMC', contacts:[
+    {name:'Aisha Khan',     email:'aisha.khan@edelweissfin.com',    role:'Institutional Sales'}
+  ]},
+  {logo:'IC', house:'ICICI Pru AMC', contacts:[
+    {name:'Deepak Pillai',  email:'deepak.pillai@icicipruamc.com',  role:'Channel Manager'}
+  ]},
+  {logo:'AV', house:'Avendus Capital', contacts:[
+    {name:'Rohan Das',      email:'rohan.das@avendus.com',          role:'Investment Advisor'}
+  ]},
+  {logo:'QT', house:'Quant AMC', contacts:[
+    {name:'Meera Iyer',     email:'meera.iyer@quantmutual.com',     role:'Regional Head'}
+  ]},
+];
+
+/* ══════════════════════════════════════
+   SCHEME DATA
+══════════════════════════════════════ */
+const schemeData={
   pms:[
-    {id:'p1',name:'Ayan Analytics Pvlt Ltd - PriceBridge Honeycomb.',logo:'PB',tag:'ETF',tagClass:'',strategy:'Equity',inception:'Jan 2023',r1:'20.59%',r3:'17.88%',r5:'NA',rsi:'15.88%'},
+    {id:'p1',name:'Ayan Analytics Pvlt Ltd - PriceBridge Honeycomb',logo:'PB',tag:'ETF',tagClass:'',strategy:'Equity',inception:'Jan 2023',r1:'20.59%',r3:'17.88%',r5:'NA',rsi:'15.88%'},
     {id:'p2',name:'JM Financial Limited - Apex',logo:'JM',tag:'Multi Cap & Flexi Cap',tagClass:'multicap',strategy:'Equity',inception:'Feb 2023',r1:'8.99%',r3:'16.82%',r5:'NA',rsi:'16.57%'},
     {id:'p3',name:'Dezerv Investments Pvt Ltd - SHINE',logo:'DZ',tag:'Multi Asset',tagClass:'multiasset',strategy:'Multiasset',inception:'Apr 2025',r1:'61.86%',r3:'NA',r5:'NA',rsi:'60.57%'},
     {id:'p4',name:'Sundaram Alternate Assets Ltd - Rising Stars',logo:'SA',tag:'Small Cap',tagClass:'smallcap',strategy:'Equity',inception:'Mar 2022',r1:'42.31%',r3:'18.44%',r5:'17.38%',rsi:'14.83%'},
@@ -454,163 +637,503 @@ const schemeData = {
     {id:'c1',name:'Marcellus Global Compounders - AIF III',logo:'MC',tag:'Long Only',tagClass:'equity',strategy:'Equity',inception:'Nov 2022',r1:'24.30%',r3:'NA',r5:'NA',rsi:'22.10%'},
     {id:'c2',name:'Quant Absolute Fund - AIF Category III',logo:'QT',tag:'Quant',tagClass:'multiasset',strategy:'Quant',inception:'Mar 2023',r1:'31.80%',r3:'NA',r5:'NA',rsi:'29.40%'},
   ],
-  gift1:[
-    {id:'g1',name:'GIFT City Infrastructure Debt Fund - I',logo:'GI',tag:'Debt',tagClass:'',strategy:'Fixed Income',inception:'Jun 2023',r1:'11.20%',r3:'NA',r5:'NA',rsi:'10.80%'},
-  ],
+  gift1:[{id:'g1',name:'GIFT City Infrastructure Debt Fund - I',logo:'GI',tag:'Debt',tagClass:'',strategy:'Fixed Income',inception:'Jun 2023',r1:'11.20%',r3:'NA',r5:'NA',rsi:'10.80%'}],
   gift2:[
     {id:'h1',name:'GIFT AMC - Multi Strategy Hybrid Fund',logo:'GA',tag:'Hybrid',tagClass:'multiasset',strategy:'Hybrid',inception:'Sep 2023',r1:'NA',r3:'NA',r5:'NA',rsi:'NA'},
     {id:'h2',name:'Mirae GIFT AIF Cat II - Growth Series',logo:'MG',tag:'Growth',tagClass:'equity',strategy:'Equity',inception:'Jan 2024',r1:'NA',r3:'NA',r5:'NA',rsi:'NA'},
   ],
-  gift3:[
-    {id:'i1',name:'DSP GIFT Long Short Equity Fund',logo:'DS',tag:'Long Short',tagClass:'smallcap',strategy:'Equity L/S',inception:'Feb 2024',r1:'NA',r3:'NA',r5:'NA',rsi:'NA'},
+  gift3:[{id:'i1',name:'DSP GIFT Long Short Equity Fund',logo:'DS',tag:'Long Short',tagClass:'smallcap',strategy:'Equity L/S',inception:'Feb 2024',r1:'NA',r3:'NA',r5:'NA',rsi:'NA'}],
+  mf:[
+    {id:'mf1',name:'Mirae Asset Large Cap Fund - Direct Growth',logo:'MA',tag:'Large Cap',tagClass:'equity',strategy:'Equity',inception:'Jan 2013',r1:'18.42%',r3:'14.20%',r5:'16.80%',rsi:'17.30%'},
+    {id:'mf2',name:'Parag Parikh Flexi Cap Fund - Direct Growth',logo:'PP',tag:'Flexi Cap',tagClass:'multicap',strategy:'Equity',inception:'May 2013',r1:'22.10%',r3:'19.50%',r5:'21.40%',rsi:'20.80%'},
+    {id:'mf3',name:'Axis Small Cap Fund - Direct Growth',logo:'AX',tag:'Small Cap',tagClass:'smallcap',strategy:'Equity',inception:'Nov 2013',r1:'31.60%',r3:'24.30%',r5:'26.10%',rsi:'24.70%'},
+    {id:'mf4',name:'HDFC Balanced Advantage Fund - Direct Growth',logo:'HD',tag:'Balanced Advantage',tagClass:'multiasset',strategy:'Hybrid',inception:'Jan 2013',r1:'20.15%',r3:'16.40%',r5:'17.90%',rsi:'17.20%'},
+    {id:'mf5',name:'SBI Contra Fund - Direct Growth',logo:'SB',tag:'Contra',tagClass:'multicap',strategy:'Equity',inception:'Jan 2013',r1:'25.30%',r3:'21.80%',r5:'19.60%',rsi:'20.40%'},
+    {id:'mf6',name:'Nippon India Multi Cap Fund - Direct Growth',logo:'NI',tag:'Multi Cap',tagClass:'multicap',strategy:'Equity',inception:'Mar 2005',r1:'28.70%',r3:'22.10%',r5:'20.30%',rsi:'18.60%'},
+    {id:'mf7',name:'Quant Active Fund - Direct Growth',logo:'QT',tag:'Multi Cap',tagClass:'multicap',strategy:'Quant',inception:'Jan 2013',r1:'33.40%',r3:'26.80%',r5:'28.50%',rsi:'27.10%'},
+    {id:'mf8',name:'ICICI Pru Technology Fund - Direct Growth',logo:'IC',tag:'Sectoral',tagClass:'equity',strategy:'Technology',inception:'Mar 2000',r1:'19.80%',r3:'18.20%',r5:'22.60%',rsi:'15.40%'},
+    {id:'mf9',name:'Canara Robeco Bluechip Equity Fund - Direct',logo:'CR',tag:'Large Cap',tagClass:'equity',strategy:'Equity',inception:'Aug 2010',r1:'17.90%',r3:'13.80%',r5:'15.60%',rsi:'14.20%'},
+    {id:'mf10',name:'Kotak Emerging Equity Fund - Direct Growth',logo:'KT',tag:'Mid Cap',tagClass:'multicap',strategy:'Equity',inception:'Mar 2007',r1:'29.40%',r3:'23.60%',r5:'24.80%',rsi:'22.90%'},
+  ],
+  sif:[
+    {id:'s1',name:'360 ONE SIF - Equity Opportunities Strategy',logo:'36',tag:'Equity',tagClass:'equity',strategy:'Long Only Equity',inception:'Mar 2025',r1:'NA',r3:'NA',r5:'NA',rsi:'NA'},
+    {id:'s2',name:'Motilal Oswal SIF - Value & Momentum',logo:'MO',tag:'Multi Factor',tagClass:'multicap',strategy:'Quant',inception:'Apr 2025',r1:'NA',r3:'NA',r5:'NA',rsi:'NA'},
+    {id:'s3',name:'ICICI Pru SIF - Multi Asset Allocation',logo:'IC',tag:'Multi Asset',tagClass:'multiasset',strategy:'Multi Asset',inception:'Feb 2025',r1:'NA',r3:'NA',r5:'NA',rsi:'NA'},
+    {id:'s4',name:'Nuvama SIF - Alpha Long Short Fund',logo:'NV',tag:'Long Short',tagClass:'smallcap',strategy:'L/S Equity',inception:'Mar 2025',r1:'NA',r3:'NA',r5:'NA',rsi:'NA'},
+    {id:'s5',name:'Mirae Asset SIF - Systematic Equity',logo:'MA',tag:'Systematic',tagClass:'equity',strategy:'Quant',inception:'May 2025',r1:'NA',r3:'NA',r5:'NA',rsi:'NA'},
+    {id:'s6',name:'WhiteOak SIF - Quality & Growth Strategy',logo:'WO',tag:'Quality Growth',tagClass:'multicap',strategy:'Equity',inception:'Apr 2025',r1:'NA',r3:'NA',r5:'NA',rsi:'NA'},
+    {id:'s7',name:'Bajaj Finserv SIF - Flexi Duration Debt',logo:'BF',tag:'Debt',tagClass:'',strategy:'Fixed Income',inception:'Mar 2025',r1:'NA',r3:'NA',r5:'NA',rsi:'NA'},
   ],
 };
+const prodLabels={pms:'PMS',aif1:'AIF (CAT I)',aif2:'AIF (CAT II)',aif3:'AIF (CAT III)',gift1:'GIFT (CAT I)',gift2:'GIFT (CAT II)',gift3:'GIFT (CAT III)',mf:'Mutual Fund',sif:'SIF'};
+const ALL_TABS=['info','family','investments','transactions','valuations','suggested','schedule','notes'];
 
-const prodLabels={pms:'PMS',aif1:'AIF (CAT I)',aif2:'AIF (CAT II)',aif3:'AIF (CAT III)',gift1:'GIFT (CAT I)',gift2:'GIFT (CAT II)',gift3:'GIFT (CAT III)'};
-let cart={}, currentProd='pms', historyRecords=[], historyCounter=0;
+/* ══════════════════════════════════════
+   PARTICIPANT STATE
+══════════════════════════════════════ */
+let participants = {
+  investor: [
+    {name:'Garima Gupta', email:'garimagupta89@gmail.com', sub:'garimagupta89@gmail.com | 9870223157', initials:'GG', avClass:'av-investor', badgeClass:'pb-investor', label:'Investor', locked:true}
+  ],
+  rm: [
+    {name:'Saikumar (RM)', email:'saikumar.thota@pmsbazaar.com', sub:'saikumar.thota@pmsbazaar.com', initials:'SK', avClass:'av-rm', badgeClass:'pb-rm', label:'RM', locked:true}
+  ],
+  fh: []
+};
 
-function switchTab(name,el){
-  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
-  el.classList.add('active');
-  ['profile','callhistory','notes','meetings','activities','wishlist','suggested'].forEach(t=>{
-    document.getElementById('tab-'+t).style.display=t===name?'block':'none';
+let currentPS = 'investor';
+
+function switchPS(tab) {
+  currentPS = tab;
+  ['investor','rm','fh'].forEach(t => {
+    document.getElementById('ps-tab-'+t).classList.toggle('active', t===tab);
+    document.getElementById('panel-'+t).classList.toggle('active', t===tab);
+  });
+  if(tab !== 'fh') closeFHDropdown();
+}
+
+function allEmails() {
+  return [...participants.investor, ...participants.rm, ...participants.fh].map(p => p.email);
+}
+
+function renderParticipantGroup(group) {
+  const listEl = document.getElementById(group+'-list');
+  listEl.innerHTML = participants[group].map(p => `
+    <div class="person-row">
+      <div class="person-avatar ${p.avClass}">${p.initials}</div>
+      <div class="person-info">
+        <div class="person-name">${escHtml(p.name)}</div>
+        <div class="person-sub">${escHtml(p.sub || p.email)}</div>
+      </div>
+      <span class="person-badge ${p.badgeClass}">${p.label}</span>
+      ${p.locked ? '' : `<button class="remove-btn" onclick="removePerson('${group}','${p.email}')">✕</button>`}
+    </div>`).join('');
+  updateParticipantCounts();
+  renderParticipantSummary();
+}
+
+function updateParticipantCounts() {
+  ['investor','rm','fh'].forEach(g => {
+    document.getElementById('cnt-'+g).textContent = participants[g].length;
   });
 }
 
-function openFundModal(){
-  document.getElementById('fund-overlay').classList.add('active');
-  const s=document.getElementById('scheme-search');
-  if(s) s.value='';
-  renderSchemes(); renderCart();
-}
-function closeFundModal(){
-  document.getElementById('fund-overlay').classList.remove('active');
+function renderParticipantSummary() {
+  const el = document.getElementById('participant-summary');
+  let html = `<span class="sum-chip sum-chip-investor">👤 ${participants.investor.length} Investor${participants.investor.length!==1?'s':''}</span>`;
+  html += `<span class="sum-chip sum-chip-rm">💼 ${participants.rm.length} RM/Team</span>`;
+  if(participants.fh.length) {
+    html += `<span class="sum-chip sum-chip-fh">🏦 ${participants.fh.length} Fund House</span>`;
+  }
+  el.innerHTML = html;
 }
 
-function switchProd(prod,el){
+function addPerson(group) {
+  const inp = document.getElementById(group+'-input');
+  const email = (inp.value||'').trim().toLowerCase();
+  if(!email || !email.includes('@')) return;
+  if(allEmails().includes(email)) { inp.value=''; return; }
+  const initials = email.split('@')[0].slice(0,2).toUpperCase();
+  const avClass = group==='rm' ? 'av-team' : 'av-investor';
+  const badgeClass = group==='rm' ? 'pb-team' : 'pb-guest';
+  const label = group==='rm' ? 'Team' : 'Guest';
+  participants[group].push({name:email.split('@')[0], email, sub:email, initials, avClass, badgeClass, label});
+  inp.value='';
+  renderParticipantGroup(group);
+}
+
+function removePerson(group, email) {
+  participants[group] = participants[group].filter(p => p.email !== email);
+  renderParticipantGroup(group);
+}
+
+/* ── Fund house search ── */
+function onFHSearch() {
+  const q = (document.getElementById('fh-search').value||'').toLowerCase().trim();
+  const dd = document.getElementById('fh-dropdown');
+  const used = allEmails();
+  let options = [];
+
+  FH_DIRECTORY.forEach(fh => {
+    fh.contacts.forEach(c => {
+      if(used.includes(c.email)) return;
+      if(!q || fh.house.toLowerCase().includes(q) || c.name.toLowerCase().includes(q) || c.role.toLowerCase().includes(q)) {
+        options.push({...c, house:fh.house, logo:fh.logo});
+      }
+    });
+  });
+
+  if(!options.length) { dd.style.display='none'; return; }
+
+  // group by house
+  const grouped = {};
+  options.forEach(o => { if(!grouped[o.house]) grouped[o.house]=[]; grouped[o.house].push(o); });
+
+  let html = '';
+  Object.entries(grouped).forEach(([house, contacts]) => {
+    const fhData = FH_DIRECTORY.find(f => f.house === house);
+    html += `<div class="fh-divider">${escHtml(house)}</div>`;
+    html += contacts.map(c => `
+      <div class="fh-option" onclick="addFHContact('${escHtml(c.email)}','${escHtml(c.name)}','${escHtml(c.house)}','${escHtml(c.role)}','${fhData.logo}')">
+        <div class="fh-logo">${fhData.logo}</div>
+        <div>
+          <div class="fh-opt-name">${escHtml(c.name)}</div>
+          <div class="fh-opt-sub">${escHtml(c.role)} &nbsp;·&nbsp; ${escHtml(c.email)}</div>
+        </div>
+      </div>`).join('');
+  });
+  dd.innerHTML = html;
+  dd.style.display = 'block';
+}
+
+function addFHContact(email, name, house, role, logo) {
+  if(allEmails().includes(email)) { closeFHDropdown(); return; }
+  const initials = name.slice(0,2).toUpperCase();
+  participants.fh.push({
+    name, email,
+    sub: role + ' · ' + house,
+    initials, avClass:'av-fh', badgeClass:'pb-fh', label:'Fund House'
+  });
+  document.getElementById('fh-search').value = '';
+  closeFHDropdown();
+  renderParticipantGroup('fh');
+}
+
+function addFHManual() {
+  const inp = document.getElementById('fh-manual-input');
+  const email = (inp.value||'').trim().toLowerCase();
+  if(!email || !email.includes('@')) return;
+  if(allEmails().includes(email)) { inp.value=''; return; }
+  const initials = email.split('@')[0].slice(0,2).toUpperCase();
+  participants.fh.push({
+    name: email.split('@')[0], email, sub: email,
+    initials, avClass:'av-fh', badgeClass:'pb-fh', label:'Fund House'
+  });
+  inp.value='';
+  renderParticipantGroup('fh');
+}
+
+function closeFHDropdown() {
+  const dd = document.getElementById('fh-dropdown');
+  if(dd) dd.style.display='none';
+}
+
+document.addEventListener('click', e => {
+  if(!e.target.closest('.fh-search-wrap')) closeFHDropdown();
+});
+
+/* ══════════════════════════════════════
+   TABS
+══════════════════════════════════════ */
+function switchTab(name, el) {
+  document.querySelectorAll('.dtab').forEach(t=>t.classList.remove('active'));
+  el.classList.add('active');
+  ALL_TABS.forEach(t => {
+    const e = document.getElementById('tab-'+t);
+    if(e) e.style.display = t===name ? 'block' : 'none';
+  });
+  if(name==='schedule') {
+    renderParticipantGroup('investor');
+    renderParticipantGroup('rm');
+    renderParticipantGroup('fh');
+  }
+  if(name==='notes') startNoteClock();
+}
+
+function updateBadge(id, count) {
+  const b = document.getElementById(id);
+  if(!b) return;
+  b.textContent = count;
+  b.style.background = count>0 ? '#c8930a' : '#aab';
+}
+
+/* ══════════════════════════════════════
+   SUGGESTED FUNDS
+══════════════════════════════════════ */
+let cart={}, currentProd='pms', sfRecords=[], sfCounter=0;
+
+function openFundModal() {
+  document.getElementById('fund-overlay').classList.add('active');
+  const s=document.getElementById('scheme-search'); if(s) s.value='';
+  renderSchemes(); renderCart();
+}
+function closeFundModal() { document.getElementById('fund-overlay').classList.remove('active'); }
+
+function switchProd(prod, el) {
   currentProd=prod;
   document.querySelectorAll('.prod-tab').forEach(t=>t.classList.remove('active'));
   el.classList.add('active');
-  const s=document.getElementById('scheme-search');
-  if(s) s.value='';
+  const s=document.getElementById('scheme-search'); if(s) s.value='';
   renderSchemes();
 }
 
-function renderSchemes(){
+function renderSchemes() {
   const list=document.getElementById('scheme-list');
   const q=(document.getElementById('scheme-search')?.value||'').toLowerCase().trim();
-  const schemes=(schemeData[currentProd]||[]).filter(s=>
-    !q||s.name.toLowerCase().includes(q)||s.tag.toLowerCase().includes(q)||s.strategy.toLowerCase().includes(q)
-  );
-  if(!schemes.length){
-    list.innerHTML=`<div class="no-records">No schemes found${q?' matching "'+q+'"':''}.</div>`;
-    return;
+  const schemes=(schemeData[currentProd]||[]).filter(s=>!q||s.name.toLowerCase().includes(q)||s.tag.toLowerCase().includes(q)||s.strategy.toLowerCase().includes(q));
+
+  // product-level info banners
+  let banner='';
+  if(currentProd==='sif'){
+    banner=`<div style="background:#ede9fe;border:1px solid #c4b5fd;border-radius:8px;padding:10px 14px;margin-bottom:12px;font-size:12px;color:#5b21b6;display:flex;align-items:center;gap:8px;">
+      <span style="font-size:16px;">🆕</span>
+      <div><strong>Specialised Investment Fund (SIF)</strong> — New SEBI regulated product. Min. investment ₹10 Lakhs. Returns not yet available for recently launched strategies.</div>
+    </div>`;
+  } else if(currentProd==='mf'){
+    banner=`<div style="background:#ecfdf5;border:1px solid #6ee7b7;border-radius:8px;padding:10px 14px;margin-bottom:12px;font-size:12px;color:#065f46;display:flex;align-items:center;gap:8px;">
+      <span style="font-size:16px;">📊</span>
+      <div><strong>Mutual Funds</strong> — Direct growth plans. Returns are absolute for 1Y and CAGR for 3Y/5Y. Daily NAV-based liquidity.</div>
+    </div>`;
   }
+
+  if(!schemes.length){list.innerHTML=banner+`<div class="no-records">No schemes found${q?' for "'+q+'"':''}.</div>`;return;}
   const nc=v=>v==='NA'?'na':'';
-  list.innerHTML=schemes.map(s=>{
+  list.innerHTML=banner+schemes.map(s=>{
     const sel=cart[s.id]?'selected':'';
-    const tick=cart[s.id]?'✓':'+';
     return`<div class="scheme-card ${sel}">
-      <div class="scheme-logo-placeholder">${s.logo}</div>
+      <div class="scheme-logo">${s.logo}</div>
       <div class="scheme-info">
         <div class="scheme-name">${s.name}</div>
         <span class="scheme-tag ${s.tagClass}">${s.tag}</span>
-        <div class="scheme-meta">Inception: ${s.inception} &nbsp;|&nbsp; Strategy: ${s.strategy}</div>
+        <div class="scheme-meta">Inception: ${s.inception} &nbsp;|&nbsp; ${s.strategy}</div>
       </div>
       <div class="scheme-returns">
-        <div class="return-col"><div class="return-val ${nc(s.r1)}">${s.r1}</div><div class="return-label">1 Y</div></div>
-        <div class="return-col"><div class="return-val ${nc(s.r3)}">${s.r3}</div><div class="return-label">3 Y</div></div>
-        <div class="return-col"><div class="return-val ${nc(s.r5)}">${s.r5}</div><div class="return-label">5 Y</div></div>
+        <div class="return-col"><div class="return-val ${nc(s.r1)}">${s.r1}</div><div class="return-label">1Y</div></div>
+        <div class="return-col"><div class="return-val ${nc(s.r3)}">${s.r3}</div><div class="return-label">3Y</div></div>
+        <div class="return-col"><div class="return-val ${nc(s.r5)}">${s.r5}</div><div class="return-label">5Y</div></div>
         <div class="return-col"><div class="return-val ${nc(s.rsi)}">${s.rsi}</div><div class="return-label">S.I.</div></div>
       </div>
-      <button class="add-btn" onclick="toggleCart('${s.id}','${currentProd}')">${tick}</button>
+      <button class="add-btn" onclick="toggleCart('${s.id}','${currentProd}')">${cart[s.id]?'✓':'+'}</button>
     </div>`;
   }).join('');
 }
 
-function toggleCart(id,prod){
-  const s=schemeData[prod].find(x=>x.id===id);
-  if(!s) return;
-  if(cart[id]) delete cart[id];
-  else cart[id]={...s,prod};
+function toggleCart(id, prod) {
+  const s=schemeData[prod].find(x=>x.id===id); if(!s) return;
+  if(cart[id]) delete cart[id]; else cart[id]={...s,prod};
   renderSchemes(); renderCart();
 }
 
-function renderCart(){
+function renderCart() {
   const pills=document.getElementById('cart-pills');
-  const emptyMsg=document.getElementById('cart-empty-msg');
+  const empty=document.getElementById('cart-empty-msg');
   const count=Object.keys(cart).length;
   document.getElementById('sel-count').textContent=count;
   document.getElementById('trigger-btn').disabled=count===0;
-  if(count===0){
-    emptyMsg.style.display='inline'; pills.innerHTML='';
-  } else {
-    emptyMsg.style.display='none';
-    pills.innerHTML=Object.values(cart).map(s=>`
-      <span class="cart-pill">
-        ${s.name.length>30?s.name.slice(0,30)+'…':s.name}
-        <span class="remove" onclick="toggleCart('${s.id}','${s.prod}')">✕</span>
-      </span>`).join('');
+  if(!count){empty.style.display='inline';pills.innerHTML='';}
+  else{
+    empty.style.display='none';
+    pills.innerHTML=Object.values(cart).map(s=>`<span class="cart-pill">${s.name.length>30?s.name.slice(0,30)+'…':s.name}<span class="remove" onclick="toggleCart('${s.id}','${s.prod}')">✕</span></span>`).join('');
   }
 }
 
-function triggerSuggestion(){
+function triggerSuggestion() {
   if(!Object.keys(cart).length) return;
-  historyCounter++;
+  sfCounter++;
   const now=new Date();
-  const dateStr=now.toLocaleDateString('en-IN',{day:'2-digit',month:'2-digit',year:'numeric'})+' '+
-    now.toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false});
+  const dateStr=fmtDate(now)+' '+fmtTime(now);
   const grouped={};
-  Object.values(cart).forEach(s=>{ if(!grouped[s.prod]) grouped[s.prod]=[]; grouped[s.prod].push(s); });
-  historyRecords.unshift({id:historyCounter,date:dateStr,grouped,allSchemes:Object.values(cart)});
-  cart={};
-  closeFundModal();
-  renderHistory();
+  Object.values(cart).forEach(s=>{if(!grouped[s.prod])grouped[s.prod]=[];grouped[s.prod].push(s);});
+  sfRecords.unshift({id:sfCounter,date:dateStr,grouped,all:Object.values(cart)});
+  cart={}; closeFundModal(); renderSFHistory();
 }
 
-function renderHistory(){
-  const empty=document.getElementById('history-empty');
-  const table=document.getElementById('history-table');
-  const tbody=document.getElementById('history-tbody');
-  if(!historyRecords.length){ empty.style.display='block'; table.style.display='none'; return; }
+function renderSFHistory() {
+  const empty=document.getElementById('sf-empty');
+  const table=document.getElementById('sf-table');
+  const tbody=document.getElementById('sf-tbody');
+  updateBadge('sf-badge',sfRecords.length);
+  if(!sfRecords.length){empty.style.display='block';table.style.display='none';return;}
   empty.style.display='none'; table.style.display='table';
-  tbody.innerHTML=historyRecords.map(r=>{
-    const pills=r.allSchemes.map(s=>`<span class="pill">${s.name.length>25?s.name.slice(0,25)+'…':s.name}</span>`).join('');
-    return`<tr>
-      <td>${r.id}</td>
-      <td style="white-space:nowrap;">${r.date}</td>
-      <td><div class="scheme-pills">${pills}</div></td>
-      <td><button class="btn-view" onclick="viewRecord(${r.id})">View</button></td>
-    </tr>`;
+  tbody.innerHTML=sfRecords.map(r=>{
+    const pills=r.all.map(s=>`<span class="s-pill">${s.name.length>26?s.name.slice(0,26)+'…':s.name}</span>`).join('');
+    return`<tr><td>${r.id}</td><td style="white-space:nowrap">${r.date}</td><td><div class="scheme-pills">${pills}</div></td><td><button class="btn-view" onclick="viewSF(${r.id})">View</button></td></tr>`;
   }).join('');
 }
 
-function viewRecord(id){
-  const rec=historyRecords.find(r=>r.id===id);
-  if(!rec) return;
-  const body=document.getElementById('view-modal-body');
-  let html=`<div class="view-date-info">Triggered on: <strong>${rec.date}</strong> &nbsp;|&nbsp; Total schemes: <strong>${rec.allSchemes.length}</strong></div>`;
+function viewSF(id) {
+  const rec=sfRecords.find(r=>r.id===id); if(!rec) return;
+  let html=`<div class="view-date-info">Triggered: <strong>${rec.date}</strong> &nbsp;|&nbsp; <strong>${rec.all.length}</strong> scheme(s)</div>`;
   Object.keys(rec.grouped).forEach(prod=>{
-    html+=`<div class="view-product-group">
-      <div class="view-product-title">${prodLabels[prod]}</div>
-      ${rec.grouped[prod].map(s=>`
-        <div class="view-scheme-row">
-          <div class="view-scheme-dot"></div>
-          <span style="flex:1;">${s.name}</span>
-          <span style="font-size:11px;color:#888;">${s.strategy}</span>
-        </div>`).join('')}
-    </div>`;
+    html+=`<div class="view-product-group"><div class="view-product-title">${prodLabels[prod]}</div>${rec.grouped[prod].map(s=>`<div class="view-scheme-row"><div class="view-dot"></div><span style="flex:1">${s.name}</span><span style="font-size:11px;color:#aaa">${s.strategy}</span></div>`).join('')}</div>`;
   });
-  body.innerHTML=html;
+  document.getElementById('view-body').innerHTML=html;
   document.getElementById('view-overlay').classList.add('active');
 }
 
-document.getElementById('fund-overlay').addEventListener('click',function(e){ if(e.target===this) closeFundModal(); });
-document.getElementById('view-overlay').addEventListener('click',function(e){ if(e.target===this) this.classList.remove('active'); });
-</script>
+/* ══════════════════════════════════════
+   SCHEDULE CALL
+══════════════════════════════════════ */
+let callType='google', callRecords=[], callCounter=0;
 
-<div style="text-align:center;padding:14px;font-size:12px;color:#aaa;border-top:1px solid #e5e7eb;background:#fff;">
-  Copyright &copy; 2026 PMS Bazaar. All Rights Reserved.
-</div>
+function selectCallType(type, el) {
+  callType=type;
+  document.querySelectorAll('.call-type-btn').forEach(b=>b.classList.remove('selected'));
+  el.classList.add('selected');
+}
+
+function scheduleCall() {
+  const date=document.getElementById('call-date').value;
+  const time=document.getElementById('call-time').value;
+  const duration=document.getElementById('call-duration').value;
+  const agenda=(document.getElementById('call-agenda').value||'').trim();
+  if(!date||!time){alert('Please select a date and time.');return;}
+  callCounter++;
+  const typeLabels={google:'Google Meet',zoom:'Zoom',phone:'Phone Call'};
+  const typeIcons={google:'🎥',zoom:'💻',phone:'📞'};
+  const dt=new Date(date+'T'+time);
+  const dateStr=dt.toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'})+' at '+dt.toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit',hour12:true});
+  callRecords.unshift({
+    id:callCounter, type:callType, label:typeLabels[callType], icon:typeIcons[callType],
+    date:dateStr, duration, agenda,
+    investors:[...participants.investor],
+    team:[...participants.rm],
+    fundHouse:[...participants.fh],
+    status:'scheduled',
+    created:fmtDate(new Date())+' '+fmtTime(new Date())
+  });
+  document.getElementById('call-date').value='';
+  document.getElementById('call-time').value='';
+  document.getElementById('call-agenda').value='';
+  renderCallHistory();
+  updateBadge('sc-badge',callRecords.length);
+}
+
+function renderCallHistory() {
+  const section=document.getElementById('call-history-section');
+  const list=document.getElementById('call-history-list');
+  if(!callRecords.length){section.style.display='none';return;}
+  section.style.display='block';
+  list.innerHTML=callRecords.map(r=>{
+    const invNames=r.investors.map(i=>i.name).join(', ');
+    const teamNames=r.team.map(t=>t.name).join(', ');
+    const fhNames=r.fundHouse.map(f=>f.name).join(', ');
+    const fhLine=r.fundHouse.length ? `&nbsp;|&nbsp; 🏦 Fund House: ${escHtml(fhNames)}` : '';
+    return`<div class="call-card">
+      <div class="call-card-icon ${r.type}">${r.icon}</div>
+      <div class="call-card-body">
+        <div class="call-card-top">
+          <span class="call-card-type">${r.label}</span>
+          <span class="call-card-date">📅 ${r.date} &nbsp;•&nbsp; ⏱ ${r.duration}</span>
+          <span class="call-status status-${r.status}">${r.status.charAt(0).toUpperCase()+r.status.slice(1)}</span>
+        </div>
+        ${r.agenda?`<div class="call-card-desc">${escHtml(r.agenda)}</div>`:''}
+        <div class="call-card-participants">👤 Investors: ${escHtml(invNames)} &nbsp;|&nbsp; 💼 Team: ${escHtml(teamNames)}${fhLine}</div>
+      </div>
+      <button class="btn-icon" onclick="markCallDone(${r.id})">✓ Done</button>
+    </div>`;
+  }).join('');
+}
+
+function markCallDone(id) {
+  const r=callRecords.find(c=>c.id===id);
+  if(r) r.status='completed';
+  renderCallHistory();
+}
+
+/* ══════════════════════════════════════
+   NOTES
+══════════════════════════════════════ */
+let notes=[], noteCounter=0, noteClock=null;
+
+function startNoteClock() {
+  updateNoteLiveTime();
+  if(noteClock) return;
+  noteClock=setInterval(updateNoteLiveTime,1000);
+}
+function updateNoteLiveTime() {
+  const el=document.getElementById('note-live-time');
+  if(el) el.textContent=fmtDate(new Date())+' '+fmtTime(new Date());
+}
+
+function saveNote() {
+  const input=document.getElementById('note-input');
+  const text=(input.value||'').trim();
+  if(!text) return;
+  noteCounter++;
+  const now=new Date();
+  notes.unshift({
+    id:noteCounter, text,
+    author:'Saikumar', email:'saikumar.thota@pmsbazaar.com',
+    date:fmtDate(now), time:fmtTime(now),
+    fullDate:now.toLocaleDateString('en-IN',{weekday:'short',day:'2-digit',month:'short',year:'numeric'})+' at '+fmtTime(now)
+  });
+  input.value='';
+  renderNotes();
+  updateBadge('notes-badge',notes.length);
+}
+
+function renderNotes() {
+  const empty=document.getElementById('notes-empty');
+  const list=document.getElementById('notes-list');
+  if(!notes.length){empty.style.display='block';list.innerHTML='';return;}
+  empty.style.display='none';
+  list.innerHTML=notes.map(n=>`
+    <div class="note-card" id="note-card-${n.id}">
+      <div class="note-card-header">
+        <div class="note-card-author">
+          <div class="note-author-avatar">SK</div>
+          <div>
+            <div class="note-author-name">${escHtml(n.author)}</div>
+            <div class="note-author-email">${escHtml(n.email)}</div>
+          </div>
+        </div>
+        <div class="note-timestamp">📅 ${n.fullDate}</div>
+      </div>
+      <div class="note-body" id="note-body-${n.id}">${escHtml(n.text).replace(/\n/g,'<br>')}</div>
+      <textarea class="note-edit-area" id="note-edit-${n.id}">${escHtml(n.text)}</textarea>
+      <div class="note-footer">
+        <button class="btn-note-action" id="note-edit-btn-${n.id}" onclick="editNote(${n.id})">✏️ Edit</button>
+        <button class="btn-note-action" onclick="saveEditNote(${n.id})" style="display:none;" id="note-save-btn-${n.id}">💾 Save</button>
+        <button class="btn-note-action" onclick="deleteNote(${n.id})" style="color:#ef4444;border-color:#fecaca;">🗑 Delete</button>
+      </div>
+    </div>`).join('');
+}
+
+function editNote(id) {
+  const card=document.getElementById('note-card-'+id);
+  const saveBtn=document.getElementById('note-save-btn-'+id);
+  const editBtn=document.getElementById('note-edit-btn-'+id);
+  card.classList.add('editing');
+  saveBtn.style.display='inline-block';
+  editBtn.style.display='none';
+  document.getElementById('note-edit-'+id).focus();
+}
+
+function saveEditNote(id) {
+  const n=notes.find(x=>x.id===id); if(!n) return;
+  const newText=(document.getElementById('note-edit-'+id).value||'').trim();
+  if(!newText) return;
+  n.text=newText; n.edited=true;
+  renderNotes();
+}
+
+function deleteNote(id) {
+  if(!confirm('Delete this note?')) return;
+  notes=notes.filter(n=>n.id!==id);
+  renderNotes();
+  updateBadge('notes-badge',notes.length);
+}
+
+/* ══════════════════════════════════════
+   HELPERS
+══════════════════════════════════════ */
+function fmtDate(d){return d.toLocaleDateString('en-IN',{day:'2-digit',month:'2-digit',year:'numeric'});}
+function fmtTime(d){return d.toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false});}
+function escHtml(s){const d=document.createElement('div');d.textContent=String(s);return d.innerHTML;}
+
+/* close modals on backdrop */
+document.getElementById('fund-overlay').addEventListener('click',function(e){if(e.target===this)closeFundModal();});
+document.getElementById('view-overlay').addEventListener('click',function(e){if(e.target===this)this.classList.remove('active');});
+
+/* init */
+window.addEventListener('DOMContentLoaded',()=>{
+  const today=new Date().toISOString().split('T')[0];
+  document.getElementById('call-date').value=today;
+  renderParticipantGroup('investor');
+  renderParticipantGroup('rm');
+  renderParticipantGroup('fh');
+});
+</script>
 </body>
 </html>
